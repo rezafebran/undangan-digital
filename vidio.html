@@ -56,8 +56,6 @@ body{
   position:absolute;inset:0;background:var(--gold-soft);
   transform:scaleX(0);transform-origin:left;border-radius:3px;
 }
-.progress span.done i{transform:scaleX(1)}
-.progress span.on i{transition:transform linear;transform:scaleX(1)}
 
 /* ---------- TOP BAR ---------- */
 .topbar{
@@ -327,40 +325,59 @@ scenes.forEach(() => {
   seg.appendChild(document.createElement('i'));
   progress.appendChild(seg);
 });
-const segs = [...progress.children];
+const bars = [...progress.children].map(seg => seg.firstChild);
 
 let cur = 0, timer = null, started = false, paused = false;
 let segStart = 0, segRemain = 0;
 
+function setBar(k, frac, durMs) {
+  bars[k].style.transition = durMs > 0 ? 'transform ' + durMs + 'ms linear' : 'none';
+  bars[k].style.transform = 'scaleX(' + frac + ')';
+}
+
 function show(i) {
   clearTimeout(timer);
+  paused = false;
+  badge.classList.remove('show');
   i = Math.max(0, Math.min(scenes.length - 1, i));
-  scenes.forEach((s, k) => s.classList.toggle('on', k === i));
-  segs.forEach((b, k) => {
-    b.classList.toggle('done', k < i);
-    b.classList.remove('on');
-    b.firstChild.style.transitionDuration = '0s';
-    if (k >= i) b.firstChild.style.transform = 'scaleX(0)';
-  });
+  scenes.forEach((sc, k) => sc.classList.toggle('on', k === i));
+  bars.forEach((_, k) => setBar(k, k < i ? 1 : 0, 0));
   cur = i;
   const dur = +scenes[i].dataset.dur;
   if (dur > 0 && started) {
-    const bar = segs[i].firstChild;
-    requestAnimationFrame(() => {
-      bar.style.transitionDuration = dur + 'ms';
-      segs[i].classList.add('on');
-    });
     segStart = Date.now(); segRemain = dur;
+    // dua frame agar scaleX(0) ter-apply dulu sebelum animasi fill dimulai
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (cur === i && !paused) setBar(i, 1, dur);
+    }));
     timer = setTimeout(() => show(cur + 1), dur);
+  } else if (started) {
+    // scene penutup: semua segmen terisi
+    setBar(i, 1, 0);
   }
 }
 
 // ----- Mulai -----
 const audio = document.getElementById('audio');
 const btnMusic = document.getElementById('btnMusic');
+const badge = document.getElementById('pausedBadge');
+
+// preload semua foto scene supaya tidak blank saat gilirannya tiba
+function preloadImages() {
+  scenes.forEach(sc => {
+    const bg = sc.querySelector('.bg');
+    if (bg) {
+      const m = /url\(['"]?(.*?)['"]?\)/.exec(bg.style.backgroundImage);
+      if (m) new Image().src = m[1];
+    }
+    sc.querySelectorAll('img').forEach(im => { new Image().src = im.src; });
+  });
+}
+
 document.getElementById('btnOpen').addEventListener('click', e => {
   e.stopPropagation();
   started = true;
+  preloadImages();
   document.getElementById('topbar').style.opacity = 1;
   document.getElementById('hint').classList.add('show');
   setTimeout(() => document.getElementById('hint').classList.remove('show'), 5000);
@@ -377,53 +394,60 @@ btnMusic.addEventListener('click', e => {
 
 // ----- Tap kiri/kanan, tahan untuk jeda -----
 const stage = document.getElementById('stage');
-const badge = document.getElementById('pausedBadge');
 let holdTimer = null, wasHold = false;
 
-function pausePlay() {
+function pausePlay(showBadge) {
   if (!started || paused) return;
   const dur = +scenes[cur].dataset.dur;
   if (dur <= 0) return;
   paused = true;
   clearTimeout(timer);
   segRemain -= (Date.now() - segStart);
-  const bar = segs[cur].firstChild;
-  const done = 1 - Math.max(0, segRemain) / dur;
-  bar.style.transitionDuration = '0s';
-  bar.style.transform = 'scaleX(' + done + ')';
-  badge.classList.add('show');
+  segRemain = Math.max(0, segRemain);
+  setBar(cur, 1 - segRemain / dur, 0);
+  if (showBadge !== false) badge.classList.add('show');
 }
 function resumePlay() {
   if (!paused) return;
   paused = false;
   badge.classList.remove('show');
-  const bar = segs[cur].firstChild;
-  requestAnimationFrame(() => {
-    bar.style.transitionDuration = Math.max(0, segRemain) + 'ms';
-    bar.style.transform = 'scaleX(1)';
-  });
+  const remain = segRemain;
   segStart = Date.now();
-  timer = setTimeout(() => show(cur + 1), Math.max(0, segRemain));
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    if (!paused) setBar(cur, 1, remain);
+  }));
+  timer = setTimeout(() => show(cur + 1), remain);
 }
 
-stage.addEventListener('pointerdown', () => {
-  if (!started) return;
+stage.addEventListener('pointerdown', e => {
+  if (!started || e.target.closest('a,button')) return;
   wasHold = false;
   holdTimer = setTimeout(() => { wasHold = true; pausePlay(); }, 350);
 });
 stage.addEventListener('pointerup', e => {
   if (!started) return;
   clearTimeout(holdTimer);
-  if (wasHold) { resumePlay(); return; }
+  if (wasHold) { resumePlay(); wasHold = false; return; }
   if (e.target.closest('a,button')) return;
   const x = e.clientX - stage.getBoundingClientRect().left;
   show(x < stage.offsetWidth / 3 ? cur - 1 : cur + 1);
+});
+stage.addEventListener('pointercancel', () => {
+  clearTimeout(holdTimer);
+  if (wasHold) { resumePlay(); wasHold = false; }
 });
 document.addEventListener('keydown', e => {
   if (!started) return;
   if (e.key === 'ArrowRight') show(cur + 1);
   if (e.key === 'ArrowLeft') show(cur - 1);
   if (e.key === ' ') { e.preventDefault(); paused ? resumePlay() : pausePlay(); }
+});
+
+// jeda otomatis saat tab/app di-background, lanjut saat kembali
+document.addEventListener('visibilitychange', () => {
+  if (!started) return;
+  if (document.hidden) pausePlay(false);
+  else if (paused) resumePlay();
 });
 
 // ----- Countdown -----
