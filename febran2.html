@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wedding of Rangga &amp; Sinta</title>
+<meta name="description" content="Undangan pernikahan Rangga & Sinta — dengan tiket masuk QR untuk tamu undangan">
+
+<!-- Icons: Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- Fonts: Google Fonts API -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#2b0d0a;
+  --maroon:#7c211a;
+  --maroon-2:#932a20;
+  --maroon-deep:#5b1712;
+  --gold:#d4a95c;
+  --gold-soft:#e8cf9e;
+  --cream:#f6ead2;
+  --serif:'Gilda Display',Georgia,serif;
+  --sans:'Jost',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--sans);
+  font-weight:300;
+  color:var(--cream);
+  background:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96"><g fill="none" stroke="%23c98a4b" stroke-opacity=".28"><g transform="translate(24,24)"><path d="M0-14C4-9 4-4 0 0C-4-4-4-9 0-14Z"/><path d="M0 14C4 9 4 4 0 0C-4 4-4 9 0 14Z"/><path d="M-14 0C-9-4-4-4 0 0C-4 4-9 4-14 0Z"/><path d="M14 0C9-4 4-4 0 0C4 4 9 4 14 0Z"/></g><g transform="translate(72,72)"><path d="M0-14C4-9 4-4 0 0C-4-4-4-9 0-14Z"/><path d="M0 14C4 9 4 4 0 0C-4 4-4 9 0 14Z"/><path d="M-14 0C-9-4-4-4 0 0C-4 4-9 4-14 0Z"/><path d="M14 0C9-4 4-4 0 0C4 4 9 4 14 0Z"/></g></g></svg>'),
+    radial-gradient(ellipse at 50% 30%,#4a130d,var(--bg) 75%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+
+/* ---------- PHONE CARD ---------- */
+.phone{
+  position:relative;
+  width:min(430px,100vw);
+  height:min(880px,100dvh);
+  background:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96"><g fill="none" stroke="%23e0b06a" stroke-opacity=".14"><g transform="translate(24,24)"><path d="M0-14C4-9 4-4 0 0C-4-4-4-9 0-14Z"/><path d="M0 14C4 9 4 4 0 0C-4 4-4 9 0 14Z"/><path d="M-14 0C-9-4-4-4 0 0C-4 4-9 4-14 0Z"/><path d="M14 0C9-4 4-4 0 0C4 4 9 4 14 0Z"/></g><g transform="translate(72,72)"><path d="M0-14C4-9 4-4 0 0C-4-4-4-9 0-14Z"/><path d="M0 14C4 9 4 4 0 0C-4 4-4 9 0 14Z"/><path d="M-14 0C-9-4-4-4 0 0C-4 4-9 4-14 0Z"/><path d="M14 0C9-4 4-4 0 0C4 4 9 4 14 0Z"/></g></g></svg>'),
+    linear-gradient(175deg,var(--maroon-2),var(--maroon) 45%,var(--maroon-deep));
+  border-radius:22px;
+  border:1px solid rgba(212,169,92,.35);
+  box-shadow:0 40px 120px rgba(0,0,0,.6);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+@media(max-width:440px),(max-height:900px) and (max-width:600px){
+  .phone{width:100vw;height:100dvh;border-radius:0;border:none}
+}
+
+/* ---------- PROGRESS + TOPBAR ---------- */
+.progress{
+  display:flex;gap:5px;
+  padding:12px 14px 0;
+}
+.progress span{
+  flex:1;height:3px;border-radius:3px;
+  background:rgba(246,234,210,.25);
+  transition:background .4s;
+}
+.progress span.done{background:var(--gold-soft)}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 18px 0;
+}
+.topbar .tb-names{
+  font-family:var(--serif);
+  font-size:13px;letter-spacing:.28em;
+  color:var(--gold-soft);
+}
+.btn-round{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(43,13,10,.55);
+  border:1px solid rgba(212,169,92,.4);
+  color:var(--gold-soft);font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .3s;
+}
+.btn-round:hover{background:rgba(43,13,10,.8)}
+.btn-round.playing i{animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- SLIDES ---------- */
+.slides{position:relative;flex:1}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:24px 34px 40px;
+  opacity:0;visibility:hidden;
+  transform:translateX(28px);
+  transition:opacity .6s var(--ease),transform .6s var(--ease),visibility .6s;
+}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.slide.prev{transform:translateX(-28px)}
+
+.eyebrow{
+  font-size:11px;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;
+}
+.big{
+  font-family:var(--serif);
+  font-size:clamp(32px,9vw,42px);
+  color:var(--cream);line-height:1.2;
+  text-wrap:balance;
+}
+.lead{
+  font-size:15px;line-height:2;color:rgba(246,234,210,.88);
+  max-width:290px;
+}
+.orn{
+  display:flex;align-items:center;gap:12px;color:var(--gold);
+  margin-bottom:18px;
+}
+.orn::before,.orn::after{content:'';width:46px;height:1px;background:rgba(212,169,92,.6)}
+.orn i{font-size:12px}
+
+.btn-next{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(43,13,10,.65);color:var(--gold-soft);
+  border:1px solid rgba(212,169,92,.45);border-radius:999px;
+  font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.12em;
+  padding:10px 24px;cursor:pointer;
+  transition:background .3s,transform .3s var(--ease);
+}
+.btn-next:hover{background:rgba(43,13,10,.9);transform:translate(-50%,-2px)}
+
+/* ---------- SLIDE 1 : COVER + AMPLOP ---------- */
+.envelope{
+  position:relative;width:230px;height:150px;margin:34px 0 30px;
+  background:linear-gradient(160deg,#8f2820,#6e1d16);
+  border-radius:10px;
+  box-shadow:0 24px 50px rgba(0,0,0,.45);
+}
+.envelope::before{ /* flap */
+  content:'';position:absolute;left:0;right:0;top:0;height:0;
+  border-left:115px solid transparent;
+  border-right:115px solid transparent;
+  border-top:82px solid #a03428;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.25));
+}
+.envelope::after{ /* bottom fold */
+  content:'';position:absolute;left:0;right:0;bottom:0;height:0;
+  border-left:115px solid transparent;
+  border-right:115px solid transparent;
+  border-bottom:70px solid #7c211a;
+}
+.seal{
+  position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
+  width:72px;height:72px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#f0d9a0,var(--gold) 55%,#a67c33);
+  border:none;cursor:pointer;z-index:2;
+  box-shadow:0 10px 24px rgba(0,0,0,.4),inset 0 0 0 6px rgba(140,100,40,.35);
+  color:#7a5a22;font-size:16px;
+  transition:transform .35s var(--ease);
+}
+.seal:hover{transform:translate(-50%,-50%) scale(1.06)}
+.open-label{
+  position:absolute;left:50%;top:52%;transform:translate(-50%,42px);
+  z-index:2;background:rgba(43,13,10,.85);color:var(--gold-soft);
+  font-size:12px;font-weight:500;letter-spacing:.08em;
+  padding:7px 18px;border-radius:999px;pointer-events:none;
+  border:1px solid rgba(212,169,92,.4);
+}
+.to{
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(246,234,210,.6);
+}
+.to strong{
+  display:block;margin-top:8px;
+  font-family:var(--serif);font-size:20px;font-weight:400;
+  letter-spacing:.04em;text-transform:none;color:var(--cream);
+}
+
+/* ---------- SLIDE 3 : MEMPELAI ---------- */
+.pair{display:flex;flex-direction:column;gap:26px}
+.p-name{font-family:var(--serif);font-size:27px;color:var(--cream)}
+.p-sub{font-size:12.5px;color:rgba(246,234,210,.7);margin-top:6px;line-height:1.8}
+.pair .amp{font-family:var(--serif);font-size:30px;color:var(--gold)}
+
+/* ---------- SLIDE 4 : ACARA ---------- */
+.ev{
+  width:100%;max-width:300px;
+  border:1px solid rgba(212,169,92,.4);border-radius:14px;
+  padding:20px 18px;margin-top:16px;
+  background:rgba(43,13,10,.35);
+}
+.ev h3{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--gold-soft)}
+.ev p{font-size:13px;line-height:1.8;color:rgba(246,234,210,.85);margin-top:8px}
+.ev a{
+  display:inline-flex;align-items:center;gap:7px;margin-top:12px;
+  color:var(--gold-soft);text-decoration:none;font-size:12px;letter-spacing:.06em;
+  border:1px solid rgba(212,169,92,.45);border-radius:999px;padding:7px 16px;
+  transition:background .3s;
+}
+.ev a:hover{background:rgba(43,13,10,.7)}
+
+/* ---------- SLIDE 5 : TIKET QR ---------- */
+.qr-frame{
+  background:#fff;border-radius:18px;padding:14px;
+  margin:26px 0 20px;
+  box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+.qr-frame img{width:190px;height:190px;display:block}
+.qr-name{font-family:var(--serif);font-size:23px;color:var(--cream)}
+.qr-note{
+  font-size:12.5px;line-height:1.9;color:rgba(246,234,210,.75);
+  max-width:250px;margin-top:12px;
+}
+.qr-code-text{
+  margin-top:10px;font-size:10px;letter-spacing:.3em;
+  color:var(--gold);text-transform:uppercase;
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <div class="progress" id="progress">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="topbar">
+    <div class="tb-names">RANGGA &amp; SINTA</div>
+    <button class="btn-round" id="btnMusic" aria-label="Musik"><i class="fa-solid fa-music"></i></button>
+  </div>
+
+  <div class="slides" id="slides">
+
+    <!-- 1 : COVER -->
+    <div class="slide active">
+      <p class="eyebrow">The Wedding Of</p>
+      <h1 class="big">Rangga &amp; Sinta</h1>
+      <div class="envelope">
+        <button class="seal" id="btnOpen" aria-label="Buka undangan"><i class="fa-solid fa-fleur-de-lis"></i></button>
+        <span class="open-label">Buka Undangan</span>
+      </div>
+      <p class="to">Kepada Yth.<strong id="guestName">Tamu Undangan</strong></p>
+    </div>
+
+    <!-- 2 : PEMBUKA -->
+    <div class="slide">
+      <div class="orn"><i class="fa-solid fa-heart"></i></div>
+      <p class="eyebrow">Bismillahirrahmanirrahim</p>
+      <p class="lead">Dengan penuh sukacita, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami.</p>
+      <button class="btn-next"><i class="fa-solid fa-chevron-right"></i> Lanjut</button>
+    </div>
+
+    <!-- 3 : MEMPELAI -->
+    <div class="slide">
+      <p class="eyebrow">Mempelai</p>
+      <div class="pair">
+        <div>
+          <div class="p-name">Rangga Wijaya</div>
+          <p class="p-sub">Putra pertama dari<br>Bpk. Hendra Wijaya &amp; Ibu Ratna Sari</p>
+        </div>
+        <div class="amp">&amp;</div>
+        <div>
+          <div class="p-name">Sinta Amelia</div>
+          <p class="p-sub">Putri kedua dari<br>Bpk. Agus Salim &amp; Ibu Fitri Handayani</p>
+        </div>
+      </div>
+      <button class="btn-next"><i class="fa-solid fa-chevron-right"></i> Lanjut</button>
+    </div>
+
+    <!-- 4 : ACARA -->
+    <div class="slide">
+      <p class="eyebrow">Rangkaian Acara</p>
+      <div class="ev">
+        <h3>Akad Nikah</h3>
+        <p><strong>Sabtu, 23 Januari 2027</strong><br>08.00 &ndash; 10.00 WIB<br>Masjid Raya Al-Falah, Bandung</p>
+        <a href="https://maps.google.com/?q=Masjid+Raya+Al-Falah+Bandung" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Lihat Lokasi</a>
+      </div>
+      <div class="ev">
+        <h3>Resepsi</h3>
+        <p><strong>Sabtu, 23 Januari 2027</strong><br>11.00 &ndash; 14.00 WIB<br>Balai Sartika, Bandung</p>
+        <a href="https://maps.google.com/?q=Balai+Sartika+Bandung" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Lihat Lokasi</a>
+      </div>
+      <button class="btn-next"><i class="fa-solid fa-chevron-right"></i> Lanjut</button>
+    </div>
+
+    <!-- 5 : TIKET MASUK -->
+    <div class="slide">
+      <p class="eyebrow">Check In</p>
+      <h2 class="big" style="font-size:30px">Tiket Masuk</h2>
+      <div class="qr-frame"><img id="qrImg" alt="QR tiket masuk" width="190" height="190"></div>
+      <p class="qr-name" id="qrName">Tamu Undangan</p>
+      <p class="qr-note">Tunjukkan kode ini kepada penerima tamu saat tiba di lokasi. Kehadiran Anda dicatat setelah kode dipindai.</p>
+      <p class="qr-code-text" id="qrCode"></p>
+      <button class="btn-next"><i class="fa-solid fa-rotate-left"></i> Kembali ke Awal</button>
+    </div>
+
+  </div>
+</div>
+
+<audio id="audio" loop preload="none" src="assets/music.mp3"></audio>
+
+<script>
+// ----- Tamu dari URL: febran2.html?to=Bapak%20Andi%20dan%20Keluarga -----
+const guest = new URLSearchParams(location.search).get('to') || 'Tamu Undangan';
+document.getElementById('guestName').textContent = guest;
+document.getElementById('qrName').textContent = guest;
+
+// Kode unik per tamu (hash sederhana dari nama) — hanya tamu diundang yang punya link + kode
+let h = 0;
+for (const c of guest.toUpperCase()) h = (h * 31 + c.charCodeAt(0)) % 1679616;
+const code = 'RS-' + h.toString(36).toUpperCase().padStart(4, '0');
+document.getElementById('qrCode').textContent = 'Kode: ' + code;
+
+// QR dari QR-code API (goqr.me)
+const payload = `UNDANGAN RANGGA & SINTA\nTamu: ${guest}\nKode: ${code}`;
+document.getElementById('qrImg').src =
+  'https://api.qrserver.com/v1/create-qr-code/?size=380x380&margin=1&data=' + encodeURIComponent(payload);
+
+// ----- Slide engine -----
+const slides = [...document.querySelectorAll('.slide')];
+const bars = [...document.querySelectorAll('.progress span')];
+let cur = 0, opened = false;
+
+function go(i) {
+  i = Math.max(0, Math.min(slides.length - 1, i));
+  slides.forEach((s, k) => {
+    s.classList.toggle('active', k === i);
+    s.classList.toggle('prev', k < i);
+  });
+  bars.forEach((b, k) => b.classList.toggle('done', k <= i));
+  cur = i;
+}
+go(0);
+
+// ----- Buka undangan -----
+const audio = document.getElementById('audio');
+const btnMusic = document.getElementById('btnMusic');
+document.getElementById('btnOpen').addEventListener('click', e => {
+  e.stopPropagation();
+  opened = true;
+  go(1);
+  audio.play().then(() => btnMusic.classList.add('playing')).catch(() => {});
+});
+
+btnMusic.addEventListener('click', e => {
+  e.stopPropagation();
+  if (audio.paused) { audio.play(); btnMusic.classList.add('playing'); }
+  else { audio.pause(); btnMusic.classList.remove('playing'); }
+});
+
+// Tombol "Lanjut" (yang terakhir kembali ke awal)
+document.querySelectorAll('.btn-next').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    go(cur === slides.length - 1 ? 0 : cur + 1);
+  });
+});
+
+// Tap kiri/kanan ala story (aktif setelah undangan dibuka)
+document.getElementById('slides').addEventListener('click', e => {
+  if (!opened || e.target.closest('a,button')) return;
+  const x = e.clientX - e.currentTarget.getBoundingClientRect().left;
+  go(x < e.currentTarget.offsetWidth / 3 ? cur - 1 : cur + 1);
+});
+document.addEventListener('keydown', e => {
+  if (!opened) return;
+  if (e.key === 'ArrowRight') go(cur + 1);
+  if (e.key === 'ArrowLeft') go(cur - 1);
+});
+</script>
+</body>
+</html>
