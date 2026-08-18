@@ -2,10 +2,111 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=febran1.html">
-<title>The Wedding of Raka &amp; Nadia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katalog Template — febrandev</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Cormorant+Garamond:wght@500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#12100d;--card:#1c1915;--line:#3a342a;
+  --gold:#c5a05e;--gold-soft:#d9be8c;--ivory:#faf7f0;--muted:#9a937f;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:300;
+  background:var(--bg);color:var(--ivory);
+  min-height:100dvh;padding:60px 20px 80px;
+}
+.wrap{max-width:560px;margin:0 auto}
+.eyebrow{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);text-align:center}
+h1{
+  font-family:'Charm',cursive;font-weight:700;
+  font-size:clamp(40px,10vw,54px);text-align:center;color:#fff;line-height:1.2;
+}
+.sub{
+  font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold-soft);text-align:center;margin-bottom:44px;
+}
+.list{display:flex;flex-direction:column;gap:14px}
+.card{
+  display:flex;align-items:center;gap:16px;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:18px 20px;text-decoration:none;color:var(--ivory);
+  transition:border-color .3s,transform .3s cubic-bezier(.22,1,.36,1);
+}
+.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.swatch{
+  width:46px;height:46px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.card-body{flex:1;min-width:0}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600}
+.card-desc{font-size:12px;color:var(--muted);margin-top:2px}
+.card i.arrow{color:var(--gold);font-size:13px}
+.credit{margin-top:52px;text-align:center;font-size:11.5px;letter-spacing:.12em;color:var(--muted)}
+.credit i{color:var(--gold)}
+</style>
 </head>
 <body>
-<p>Mengalihkan ke <a href="febran1.html">undangan</a>&hellip;</p>
+<div class="wrap">
+  <p class="eyebrow">Katalog Template</p>
+  <h1>febrandev</h1>
+  <p class="sub">Undangan Digital</p>
+
+  <div class="list">
+    <a class="card" href="febran1.html">
+      <div class="swatch" style="background:linear-gradient(135deg,#17352a,#1f4536);color:#d9be8c"><i class="fa-solid fa-leaf"></i></div>
+      <div class="card-body">
+        <div class="card-name">Febran 1 &mdash; Emerald Classic</div>
+        <div class="card-desc">Hijau zamrud &amp; emas, scroll elegan, RSVP &amp; amplop digital</div>
+      </div>
+      <i class="fa-solid fa-chevron-right arrow"></i>
+    </a>
+    <a class="card" href="febran2.html">
+      <div class="swatch" style="background:linear-gradient(135deg,#7c211a,#5b1712);color:#e8cf9e"><i class="fa-solid fa-qrcode"></i></div>
+      <div class="card-body">
+        <div class="card-name">Febran 2 &mdash; Maroon Story</div>
+        <div class="card-desc">Format story, amplop segel lilin, tiket masuk QR per tamu</div>
+      </div>
+      <i class="fa-solid fa-chevron-right arrow"></i>
+    </a>
+    <a class="card" href="febran3.html">
+      <div class="swatch" style="background:linear-gradient(135deg,#141a30,#2a2415);color:#c98d4b"><i class="fa-solid fa-mountain"></i></div>
+      <div class="card-body">
+        <div class="card-name">Febran 3 &mdash; Wayang Heritage</div>
+        <div class="card-desc">Kelir wayang: gunungan membelah saat dibuka, indigo &amp; perunggu, aksara Jawa</div>
+      </div>
+      <i class="fa-solid fa-chevron-right arrow"></i>
+    </a>
+    <a class="card" href="febran4.html">
+      <div class="swatch" style="background:linear-gradient(135deg,#f2ead8,#1e3050);color:#e8804a"><i class="fa-solid fa-plane"></i></div>
+      <div class="card-body">
+        <div class="card-name">Febran 4 &mdash; Journey Boarding Pass</div>
+        <div class="card-desc">Tiket perjalanan yang tersobek, itinerary cinta &amp; stempel paspor</div>
+      </div>
+      <i class="fa-solid fa-chevron-right arrow"></i>
+    </a>
+    <a class="card" href="febran5.html">
+      <div class="swatch" style="background:linear-gradient(135deg,#3b2a1c,#c96f2e);color:#f3e2c2"><i class="fa-solid fa-record-vinyl"></i></div>
+      <div class="card-body">
+        <div class="card-name">Febran 5 &mdash; Vinyl Retro 70s</div>
+        <div class="card-desc">Sampul album piringan hitam, tracklist &amp; vinyl berputar</div>
+      </div>
+      <i class="fa-solid fa-chevron-right arrow"></i>
+    </a>
+    <a class="card" href="febran6.html">
+      <div class="swatch" style="background:linear-gradient(135deg,#f3ecdc,#d9d2c0);color:#1c1a17"><i class="fa-regular fa-newspaper"></i></div>
+      <div class="card-body">
+        <div class="card-name">Febran 6 &mdash; Koran Cinta</div>
+        <div class="card-desc">Koran vintage "Warta Bahagia", headline &amp; surat pembaca</div>
+      </div>
+      <i class="fa-solid fa-chevron-right arrow"></i>
+    </a>
+  </div>
+
+  <p class="credit">Made with <i class="fa-solid fa-heart"></i> by febrandev</p>
+</div>
 </body>
 </html>

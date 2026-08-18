@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yudhis &amp; Kirana — The Wedding Album</title>
+<meta name="description" content="Undangan pernikahan Yudhistira & Kirana — Sabtu, 19 Juni 2027, Surabaya. Sebuah album, dua sisi, satu cerita.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500;1,9..144,700;1,9..144,900&family=Space+Mono:wght@400;700&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --cream:#efe3c8;
+  --cream-deep:#e6d7b4;
+  --paper:#f4ecd9;
+  --cocoa:#3a2a1c;
+  --cocoa-soft:#6b5138;
+  --orange:#c1512a;
+  --orange-deep:#a03f1f;
+  --mustard:#d99e2b;
+  --mustard-soft:#e5b95c;
+  --line:rgba(58,42,28,.28);
+  --line-soft:rgba(58,42,28,.14);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --disp:"Fraunces",Georgia,serif;
+  --mono:"Space Mono","Courier New",monospace;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  font-weight:300;
+  background:#221710;
+  color:var(--cocoa);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+body.locked{overflow:hidden;height:100dvh}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
+
+/* grain overlay */
+.grain{
+  position:fixed;
+  inset:0;
+  z-index:80;
+  pointer-events:none;
+  opacity:.5;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============ shell ============ */
+.shell{
+  max-width:480px;
+  margin:0 auto;
+  min-height:100dvh;
+  background:var(--cream);
+  position:relative;
+  box-shadow:0 0 70px rgba(0,0,0,.65);
+}
+.content{position:relative;padding-bottom:112px}
+section{padding:64px 26px}
+
+/* track header */
+.track-head{margin-bottom:34px}
+.track-no{
+  font-family:var(--mono);
+  font-size:.66rem;
+  letter-spacing:.28em;
+  color:var(--orange);
+  font-weight:700;
+  text-transform:uppercase;
+}
+.track-title{
+  font-family:var(--disp);
+  font-weight:900;
+  font-style:italic;
+  font-size:2.1rem;
+  line-height:1.1;
+  color:var(--cocoa);
+  margin-top:6px;
+}
+.track-rule{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  margin-top:14px;
+  font-family:var(--mono);
+  font-size:.64rem;
+  color:var(--cocoa-soft);
+}
+.track-rule::before{
+  content:"";
+  flex:1;
+  border-bottom:2px dotted var(--line);
+  transform:translateY(-4px);
+}
+
+/* ============ cover / album art ============ */
+#cover{
+  position:fixed;
+  inset:0;
+  z-index:60;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#221710;
+  transition:opacity 1s var(--ease),visibility 1s;
+}
+#cover.opened{opacity:0;visibility:hidden;pointer-events:none}
+.cover-inner{
+  max-width:480px;
+  width:100%;
+  height:100%;
+  margin:0 auto;
+  background:
+    radial-gradient(90% 60% at 80% 0%,rgba(217,158,43,.22),transparent 60%),
+    var(--cream);
+  display:flex;
+  flex-direction:column;
+  padding:26px 22px;
+  overflow:hidden auto;
+}
+.album-frame{
+  flex:1;
+  border:3px solid var(--cocoa);
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  background:
+    repeating-linear-gradient(-48deg,transparent 0 68px,rgba(193,81,42,.1) 68px 140px,transparent 140px 150px,rgba(217,158,43,.12) 150px 210px),
+    var(--paper);
+  min-height:0;
+}
+.album-topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 16px;
+  border-bottom:3px solid var(--cocoa);
+  font-family:var(--mono);
+  font-size:.6rem;
+  letter-spacing:.22em;
+  font-weight:700;
+  color:var(--cocoa);
+  text-transform:uppercase;
+}
+.album-topbar .stereo{
+  border:2px solid var(--cocoa);
+  padding:2px 8px;
+}
+.album-main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+  padding:28px 22px;
+}
+.album-kicker{
+  font-family:var(--mono);
+  font-size:.64rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--orange);
+  font-weight:700;
+}
+.album-title{
+  font-family:var(--disp);
+  font-weight:900;
+  font-style:italic;
+  font-size:clamp(2.6rem,12vw,3.5rem);
+  line-height:1.02;
+  color:var(--cocoa);
+  margin:16px 0 6px;
+}
+.album-title .amp{
+  display:block;
+  font-size:.5em;
+  color:var(--orange);
+  font-weight:700;
+  margin:4px 0;
+}
+.album-sub{
+  font-family:var(--mono);
+  font-size:.66rem;
+  letter-spacing:.18em;
+  color:var(--cocoa-soft);
+  margin-top:10px;
+  text-transform:uppercase;
+}
+.album-sides{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin-top:22px;
+  font-family:var(--mono);
+  font-size:.62rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.album-sides span{
+  border:2px solid var(--cocoa);
+  padding:5px 12px;
+  background:var(--mustard-soft);
+  font-weight:700;
+}
+.album-sides span:last-child{background:transparent}
+.album-guest{
+  border-top:3px solid var(--cocoa);
+  padding:16px 20px 18px;
+  text-align:center;
+}
+.album-guest p{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cocoa-soft)}
+.album-guest .guest-name{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:700;
+  font-size:1.5rem;
+  color:var(--cocoa);
+  letter-spacing:0;
+  text-transform:none;
+  margin-top:4px;
+}
+.btn-open{
+  margin:16px auto 0;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  border:3px solid var(--cocoa);
+  background:var(--orange);
+  color:var(--paper);
+  padding:13px 26px;
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:.78rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  box-shadow:5px 5px 0 var(--cocoa);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease);
+}
+.btn-open:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--cocoa);background:var(--orange-deep)}
+.btn-open:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--cocoa)}
+.cover-foot{
+  padding-top:14px;
+  display:flex;
+  justify-content:space-between;
+  font-family:var(--mono);
+  font-size:.58rem;
+  letter-spacing:.2em;
+  color:#cbb98f;
+  text-transform:uppercase;
+}
+
+/* ============ hero: sleeve + vinyl ============ */
+#hero{
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:80px 26px 60px;
+  overflow:hidden;
+  border-bottom:3px solid var(--cocoa);
+  background:
+    linear-gradient(180deg,var(--cream) 0%,var(--cream-deep) 100%);
+}
+.now-playing{
+  font-family:var(--mono);
+  font-size:.64rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--orange);
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.np-dot{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--orange);
+  animation:blinkdot 1.6s ease-in-out infinite;
+}
+@keyframes blinkdot{0%,100%{opacity:1}50%{opacity:.25}}
+.hero-title{
+  font-family:var(--disp);
+  font-weight:900;
+  font-style:italic;
+  font-size:clamp(2.4rem,11vw,3.2rem);
+  line-height:1.05;
+  margin:14px 0 4px;
+}
+.hero-title small{
+  display:block;
+  font-size:.42em;
+  font-weight:600;
+  font-style:normal;
+  color:var(--cocoa-soft);
+  margin-top:8px;
+  letter-spacing:.02em;
+}
+.hero-date-line{
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.18em;
+  color:var(--cocoa-soft);
+  margin-top:10px;
+  text-transform:uppercase;
+}
+
+/* turntable scene */
+.turntable{
+  position:relative;
+  margin-top:40px;
+  height:250px;
+}
+.sleeve{
+  position:absolute;
+  left:0;top:10px;
+  width:230px;height:230px;
+  background:
+    radial-gradient(70% 70% at 30% 30%,rgba(217,158,43,.35),transparent 65%),
+    var(--orange);
+  border:3px solid var(--cocoa);
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:14px;
+  box-shadow:6px 6px 0 rgba(58,42,28,.35);
+}
+.sleeve::after{
+  content:"";
+  position:absolute;
+  right:-3px;top:10%;
+  width:3px;height:80%;
+  background:var(--cocoa);
+}
+.sleeve .s-top{
+  font-family:var(--mono);
+  font-size:.56rem;
+  letter-spacing:.2em;
+  color:var(--paper);
+  text-transform:uppercase;
+  font-weight:700;
+}
+.sleeve .s-name{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:900;
+  font-size:1.5rem;
+  color:var(--paper);
+  line-height:1.1;
+}
+.vinyl{
+  position:absolute;
+  left:96px;top:10px;
+  width:230px;height:230px;
+  border-radius:50%;
+  z-index:2;
+  background:
+    radial-gradient(circle,#181310 0%,#241b14 55%,#181310 100%);
+  border:2px solid #0e0a07;
+  box-shadow:0 6px 18px rgba(0,0,0,.35);
+  transform:translateX(-60px);
+  transition:transform 1.4s var(--ease);
+}
+body.opened .vinyl{transform:translateX(0)}
+.vinyl::before{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius:50%;
+  background:repeating-radial-gradient(circle,rgba(255,255,255,.05) 0 1px,transparent 1px 4px);
+}
+.vinyl::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:conic-gradient(from 210deg,transparent 0deg,rgba(244,236,217,.14) 24deg,transparent 52deg,transparent 180deg,rgba(244,236,217,.1) 210deg,transparent 240deg);
+}
+.vinyl-label{
+  position:absolute;
+  inset:50%;
+  width:88px;height:88px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:var(--mustard);
+  border:2px solid #0e0a07;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  gap:2px;
+}
+.vinyl-label::after{
+  content:"";
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--cream);
+  border:1px solid #0e0a07;
+  position:absolute;
+}
+.vinyl-label .vl-a{
+  font-family:var(--mono);
+  font-size:.5rem;
+  letter-spacing:.14em;
+  color:#3a2a1c;
+  font-weight:700;
+  text-transform:uppercase;
+}
+.vinyl-label .vl-b{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:900;
+  font-size:.82rem;
+  color:#3a2a1c;
+  margin-bottom:12px;
+}
+.vinyl-inner{position:absolute;inset:0;border-radius:50%}
+.vinyl.spinning .vinyl-inner{animation:spin 2.4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rpm-stamp{
+  position:absolute;
+  right:2px;bottom:-6px;
+  z-index:4;
+  font-family:var(--mono);
+  font-size:.58rem;
+  letter-spacing:.14em;
+  font-weight:700;
+  color:var(--orange);
+  border:2px solid var(--orange);
+  border-radius:50%;
+  width:74px;height:74px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  line-height:1.3;
+  transform:rotate(-12deg);
+  background:var(--paper);
+}
+@media (max-width:400px){
+  .turntable{height:214px}
+  .sleeve{width:192px;height:192px}
+  .vinyl{width:192px;height:192px;left:80px}
+  .rpm-stamp{width:64px;height:64px;font-size:.52rem}
+}
+.hero-hint{
+  margin-top:26px;
+  font-family:var(--mono);
+  font-size:.6rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--cocoa-soft);
+}
+.hero-hint i{margin-right:8px;animation:hopdown 2.2s ease-in-out infinite;display:inline-block}
+@keyframes hopdown{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+/* opening sequence */
+.seq{opacity:0;transform:translateY(24px)}
+body.opened .seq{
+  animation:seqIn 1s var(--ease) forwards;
+  animation-delay:calc(.4s + var(--i,0) * .16s);
+}
+@keyframes seqIn{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ============ tracklist index ============ */
+#tracklist{
+  border-bottom:3px solid var(--cocoa);
+  background:var(--paper);
+}
+.tl-side{
+  font-family:var(--mono);
+  font-size:.62rem;
+  letter-spacing:.3em;
+  font-weight:700;
+  color:var(--orange);
+  text-transform:uppercase;
+  margin:26px 0 10px;
+}
+.tl-side:first-of-type{margin-top:0}
+.tl-row{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
+  padding:9px 0;
+  text-decoration:none;
+  color:var(--cocoa);
+}
+.tl-row + .tl-row{border-top:1px solid var(--line-soft)}
+.tl-num{
+  font-family:var(--mono);
+  font-size:.68rem;
+  color:var(--cocoa-soft);
+  width:26px;
+  flex-shrink:0;
+}
+.tl-name{
+  font-family:var(--disp);
+  font-weight:600;
+  font-size:1.06rem;
+  transition:color .3s;
+}
+.tl-row:hover .tl-name{color:var(--orange);font-style:italic}
+.tl-lead{
+  flex:1;
+  border-bottom:2px dotted var(--line);
+  transform:translateY(-4px);
+}
+.tl-dur{
+  font-family:var(--mono);
+  font-size:.66rem;
+  color:var(--cocoa-soft);
+}
+
+/* ============ quote (liner intro) ============ */
+#quote{background:var(--cream)}
+.liner-quote{
+  border-left:4px solid var(--orange);
+  padding:6px 0 6px 20px;
+}
+.liner-quote blockquote{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:500;
+  font-size:1.14rem;
+  line-height:1.85;
+  color:var(--cocoa);
+}
+.liner-quote cite{
+  display:block;
+  margin-top:16px;
+  font-family:var(--mono);
+  font-style:normal;
+  font-size:.64rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--orange);
+  font-weight:700;
+}
+
+/* ============ couple ============ */
+#mempelai{border-top:3px solid var(--cocoa);background:var(--paper)}
+.artist-card{
+  border:3px solid var(--cocoa);
+  background:var(--cream);
+  box-shadow:6px 6px 0 rgba(58,42,28,.2);
+}
+.artist-card + .artist-card{margin-top:30px}
+.artist-photo{
+  position:relative;
+  border-bottom:3px solid var(--cocoa);
+  overflow:hidden;
+}
+.artist-photo img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  filter:sepia(.35) saturate(.9) contrast(1.02);
+  transition:transform .8s var(--ease);
+}
+.artist-card:hover .artist-photo img{transform:scale(1.04)}
+.side-tag{
+  position:absolute;
+  top:12px;left:12px;
+  font-family:var(--mono);
+  font-size:.6rem;
+  letter-spacing:.18em;
+  font-weight:700;
+  background:var(--mustard);
+  border:2px solid var(--cocoa);
+  padding:4px 10px;
+  text-transform:uppercase;
+}
+.artist-body{padding:22px 22px 26px}
+.artist-name{
+  font-family:var(--disp);
+  font-weight:900;
+  font-style:italic;
+  font-size:1.7rem;
+  line-height:1.15;
+}
+.artist-role{
+  font-family:var(--mono);
+  font-size:.62rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--orange);
+  font-weight:700;
+  margin:8px 0 12px;
+}
+.artist-parents{font-size:.88rem;color:var(--cocoa-soft)}
+.btn-ig{
+  margin-top:16px;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:9px 18px;
+  border:2px solid var(--cocoa);
+  background:transparent;
+  color:var(--cocoa);
+  font-family:var(--mono);
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-decoration:none;
+  transition:background .3s,color .3s,transform .3s var(--ease);
+}
+.btn-ig:hover{background:var(--cocoa);color:var(--cream);transform:translateY(-2px)}
+.btn-ig:active{transform:translateY(0) scale(.97)}
+.artist-x{
+  text-align:center;
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:900;
+  font-size:1.7rem;
+  color:var(--orange);
+  margin:22px 0;
+}
+
+/* ============ countdown as duration ============ */
+#hitung{background:var(--cocoa);color:var(--cream)}
+#hitung .track-title{color:var(--paper)}
+#hitung .track-rule{color:#c7b394}
+#hitung .track-rule::before{border-color:rgba(244,236,217,.3)}
+.deck{
+  border:3px solid var(--paper);
+  padding:24px 20px 22px;
+  background:#2d2015;
+}
+.deck-label{
+  font-family:var(--mono);
+  font-size:.6rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--mustard);
+  font-weight:700;
+  margin-bottom:16px;
+}
+.count-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  text-align:center;
+}
+.count-num{
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:1.7rem;
+  color:var(--paper);
+  line-height:1.1;
+  font-variant-numeric:tabular-nums;
+}
+.count-label{
+  font-family:var(--mono);
+  font-size:.56rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--mustard);
+  margin-top:6px;
+}
+.progress-wrap{margin-top:22px}
+.progress-bar{
+  height:8px;
+  border:2px solid var(--paper);
+  background:transparent;
+  position:relative;
+}
+.progress-fill{
+  position:absolute;
+  inset:0;
+  width:0%;
+  background:var(--orange);
+  transition:width 1.2s var(--ease);
+}
+.progress-meta{
+  display:flex;
+  justify-content:space-between;
+  font-family:var(--mono);
+  font-size:.58rem;
+  letter-spacing:.14em;
+  color:#c7b394;
+  margin-top:8px;
+  text-transform:uppercase;
+}
+.count-note{
+  margin-top:20px;
+  font-size:.88rem;
+  color:#d8c9ab;
+}
+
+/* ============ events ============ */
+#acara{background:var(--cream);border-top:3px solid var(--cocoa)}
+.gig-card{
+  border:3px solid var(--cocoa);
+  background:var(--paper);
+  box-shadow:6px 6px 0 rgba(58,42,28,.2);
+}
+.gig-card + .gig-card{margin-top:30px}
+.gig-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px 20px;
+  border-bottom:3px solid var(--cocoa);
+  background:var(--mustard-soft);
+}
+.gig-name{
+  font-family:var(--disp);
+  font-weight:900;
+  font-style:italic;
+  font-size:1.5rem;
+}
+.gig-side{
+  font-family:var(--mono);
+  font-size:.6rem;
+  letter-spacing:.16em;
+  font-weight:700;
+  border:2px solid var(--cocoa);
+  padding:3px 9px;
+  background:var(--paper);
+  white-space:nowrap;
+  text-transform:uppercase;
+}
+.gig-meta{
+  padding:18px 20px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.meta-row{
+  display:flex;
+  gap:13px;
+  align-items:flex-start;
+  font-size:.88rem;
+  color:var(--cocoa-soft);
+  line-height:1.6;
+}
+.meta-row > i{
+  color:var(--orange);
+  width:18px;
+  text-align:center;
+  margin-top:5px;
+  font-size:.85rem;
+  flex-shrink:0;
+}
+.meta-row strong{color:var(--cocoa);font-weight:600}
+.gig-map{border-top:3px solid var(--cocoa)}
+.gig-map iframe{
+  display:block;
+  width:100%;
+  height:200px;
+  border:0;
+  filter:sepia(.25) saturate(.85);
+}
+.gig-actions{padding:16px 20px 20px}
+.btn-map{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 22px;
+  border:3px solid var(--cocoa);
+  background:var(--orange);
+  color:var(--paper);
+  font-family:var(--mono);
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  box-shadow:4px 4px 0 var(--cocoa);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.btn-map:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--cocoa)}
+.btn-map:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--cocoa)}
+
+/* ============ gallery ============ */
+#galeri{background:var(--paper);border-top:3px solid var(--cocoa)}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.gallery-grid figure{
+  background:var(--cream);
+  border:3px solid var(--cocoa);
+  padding:8px 8px 26px;
+  box-shadow:4px 4px 0 rgba(58,42,28,.2);
+  transform:rotate(-1.2deg);
+  transition:transform .5s var(--ease);
+  position:relative;
+}
+.gallery-grid figure:nth-child(even){transform:rotate(1.4deg)}
+.gallery-grid figure:hover{transform:rotate(0) scale(1.02);z-index:2}
+.gallery-grid figure.wide{grid-column:span 2;transform:rotate(.6deg)}
+.gallery-grid figure.wide:hover{transform:rotate(0) scale(1.01)}
+.gallery-grid img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  filter:sepia(.4) saturate(.85) contrast(1.03);
+}
+.gallery-grid figure.wide img{aspect-ratio:16/9}
+.gallery-grid figcaption{
+  position:absolute;
+  bottom:5px;left:0;right:0;
+  text-align:center;
+  font-family:var(--mono);
+  font-size:.56rem;
+  letter-spacing:.12em;
+  color:var(--cocoa-soft);
+  text-transform:uppercase;
+}
+
+/* ============ gift ============ */
+#kado{background:var(--cream);border-top:3px solid var(--cocoa)}
+.gift-intro{font-size:.9rem;color:var(--cocoa-soft);margin-bottom:26px;max-width:380px}
+.bank-card{
+  border:3px solid var(--cocoa);
+  background:var(--paper);
+  padding:22px 20px;
+  box-shadow:5px 5px 0 rgba(58,42,28,.2);
+  position:relative;
+  overflow:hidden;
+}
+.bank-card::after{
+  content:"℗ 2027";
+  position:absolute;
+  top:14px;right:16px;
+  font-family:var(--mono);
+  font-size:.58rem;
+  letter-spacing:.14em;
+  color:var(--cocoa-soft);
+}
+.bank-card + .bank-card{margin-top:22px}
+.bank-name{
+  font-family:var(--mono);
+  font-size:.64rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--orange);
+  font-weight:700;
+}
+.bank-number{
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:1.35rem;
+  letter-spacing:.1em;
+  color:var(--cocoa);
+  margin:10px 0 2px;
+}
+.bank-holder{font-size:.84rem;color:var(--cocoa-soft)}
+.btn-copy{
+  margin-top:16px;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:9px 18px;
+  border:2px solid var(--cocoa);
+  background:transparent;
+  color:var(--cocoa);
+  font-family:var(--mono);
+  font-size:.66rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  transition:background .3s,color .3s,transform .3s var(--ease);
+}
+.btn-copy:hover{background:var(--cocoa);color:var(--cream)}
+.btn-copy:active{transform:scale(.97)}
+.btn-copy.copied{background:var(--orange);border-color:var(--orange);color:var(--paper)}
+
+/* ============ rsvp / liner notes ============ */
+#rsvp{background:var(--paper);border-top:3px solid var(--cocoa)}
+.rsvp-form{
+  border:3px solid var(--cocoa);
+  background:var(--cream);
+  padding:24px 20px;
+  box-shadow:6px 6px 0 rgba(58,42,28,.2);
+}
+.rsvp-form label{
+  display:block;
+  font-family:var(--mono);
+  font-size:.6rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--orange);
+  font-weight:700;
+  margin-bottom:7px;
+}
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea{
+  width:100%;
+  background:var(--paper);
+  border:2px solid var(--cocoa);
+  border-radius:0;
+  color:var(--cocoa);
+  font-family:var(--sans);
+  font-size:.92rem;
+  padding:11px 13px;
+  margin-bottom:18px;
+}
+.rsvp-form textarea{resize:vertical;min-height:96px}
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus{outline:none;border-color:var(--orange);box-shadow:3px 3px 0 rgba(193,81,42,.3)}
+.btn-send{
+  width:100%;
+  border:3px solid var(--cocoa);
+  padding:13px;
+  background:var(--orange);
+  color:var(--paper);
+  font-family:var(--mono);
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  box-shadow:4px 4px 0 var(--cocoa);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.btn-send:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--cocoa)}
+.btn-send:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--cocoa)}
+.wish-list{margin-top:28px;display:flex;flex-direction:column;gap:14px}
+.wish-item{
+  border:2px solid var(--cocoa);
+  background:var(--cream);
+  padding:16px 18px;
+}
+.wish-head{display:flex;align-items:baseline;gap:10px;margin-bottom:5px;flex-wrap:wrap}
+.wish-name{font-family:var(--disp);font-weight:700;font-style:italic;font-size:1.02rem;color:var(--cocoa)}
+.wish-badge{
+  margin-left:auto;
+  font-family:var(--mono);
+  font-size:.56rem;
+  letter-spacing:.12em;
+  padding:3px 9px;
+  border:2px solid var(--cocoa);
+  background:var(--mustard-soft);
+  color:var(--cocoa);
+  white-space:nowrap;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.wish-text{font-size:.88rem;color:var(--cocoa-soft)}
+.wish-time{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--cocoa-soft);margin-top:8px;text-transform:uppercase}
+
+/* ============ closing & footer ============ */
+#closing{
+  background:var(--cocoa);
+  color:var(--cream);
+  text-align:center;
+  border-top:3px solid var(--cocoa);
+}
+#closing .end-label{
+  font-family:var(--mono);
+  font-size:.62rem;
+  letter-spacing:.3em;
+  color:var(--mustard);
+  font-weight:700;
+  text-transform:uppercase;
+}
+#closing .closing-text{
+  font-size:.92rem;
+  color:#d8c9ab;
+  max-width:360px;
+  margin:16px auto 24px;
+}
+#closing .closing-names{
+  font-family:var(--disp);
+  font-style:italic;
+  font-weight:900;
+  font-size:2.2rem;
+  color:var(--paper);
+}
+footer{
+  background:var(--cocoa);
+  text-align:center;
+  padding:22px 20px 40px;
+  font-family:var(--mono);
+  font-size:.62rem;
+  letter-spacing:.1em;
+  color:#c7b394;
+  border-top:1px solid rgba(244,236,217,.18);
+}
+footer i{color:var(--orange);margin:0 4px}
+footer a{color:var(--mustard);text-decoration:none;font-weight:700}
+
+/* ============ floating ui ============ */
+#musicToggle{
+  position:fixed;
+  right:calc(50% - 240px + 16px);
+  bottom:96px;
+  z-index:50;
+  width:48px;height:48px;
+  border-radius:50%;
+  border:3px solid var(--cocoa);
+  background:var(--mustard);
+  color:var(--cocoa);
+  font-size:1rem;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  box-shadow:3px 3px 0 var(--cocoa);
+}
+#musicToggle:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--cocoa)}
+#musicToggle.show{display:flex}
+#musicToggle.playing i{animation:spin 3s linear infinite}
+@media (max-width:520px){#musicToggle{right:16px}}
+
+.bottom-nav{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:16px;
+  z-index:50;
+  width:min(440px,calc(100% - 32px));
+  background:var(--paper);
+  border:3px solid var(--cocoa);
+  box-shadow:4px 4px 0 rgba(0,0,0,.4);
+  display:none;
+  justify-content:space-around;
+  padding:9px 6px;
+}
+.bottom-nav.show{display:flex}
+.bottom-nav a{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+  text-decoration:none;
+  color:var(--cocoa-soft);
+  font-family:var(--mono);
+  font-size:.52rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  min-width:52px;
+  transition:color .3s;
+}
+.bottom-nav a i{font-size:.95rem}
+.bottom-nav a:hover,.bottom-nav a.active{color:var(--orange)}
+
+/* ============ reveal ============ */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease);
+}
+.reveal.d1{transition-delay:.1s}
+.reveal.d2{transition-delay:.2s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .reveal,.seq{opacity:1;transform:none}
+  .vinyl{transform:translateX(0)}
+}
+</style>
+</head>
+<body class="locked">
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ===== COVER : ALBUM ART ===== -->
+<div id="cover" role="dialog" aria-label="Sampul album undangan">
+  <div class="cover-inner">
+    <div class="album-frame">
+      <div class="album-topbar">
+        <span>Long Play</span>
+        <span class="stereo">Stereo</span>
+        <span>33&#8531; RPM</span>
+      </div>
+      <div class="album-main">
+        <p class="album-kicker">The Wedding Album · First Pressing</p>
+        <h1 class="album-title">Yudhistira <span class="amp">&amp;</span> Kirana</h1>
+        <p class="album-sub">Direkam dengan cinta · Surabaya · 19.06.2027</p>
+        <div class="album-sides">
+          <span>Side A · Yudhis</span>
+          <span>Side B · Kirana</span>
+        </div>
+      </div>
+      <div class="album-guest">
+        <p>Edisi khusus untuk</p>
+        <p class="guest-name" id="guestName">Tamu Undangan</p>
+        <button class="btn-open" id="btnOpen" type="button">
+          <i class="fa-solid fa-play" aria-hidden="true"></i> Putar Album
+        </button>
+      </div>
+    </div>
+    <div class="cover-foot">
+      <span>FBRN-2705</span>
+      <span>&copy; febrandev records</span>
+    </div>
+  </div>
+</div>
+
+<audio id="bgMusic" loop preload="none" src="assets/music.mp3"></audio>
+<button id="musicToggle" type="button" aria-label="Putar atau jeda musik" aria-pressed="false">
+  <i class="fa-solid fa-record-vinyl" aria-hidden="true"></i>
+</button>
+
+<div class="shell">
+<main class="content">
+
+  <!-- ===== HERO : TURNTABLE ===== -->
+  <section id="hero" aria-label="Pembuka">
+    <p class="now-playing seq" style="--i:0"><span class="np-dot" aria-hidden="true"></span> Now Playing</p>
+    <h2 class="hero-title seq" style="--i:1">
+      Hari Bahagia
+      <small>Yudhistira Mahesa Putra &amp; Kirana Ayu Lestari</small>
+    </h2>
+    <p class="hero-date-line seq" style="--i:2">Rilis: Sabtu, 19 Juni 2027 · Surabaya</p>
+
+    <div class="turntable seq" style="--i:3" aria-hidden="true">
+      <div class="vinyl" id="vinyl">
+        <div class="vinyl-inner">
+          <div class="vinyl-label">
+            <span class="vl-a">Side A</span>
+            <span class="vl-b">Y &amp; K</span>
+          </div>
+        </div>
+      </div>
+      <div class="sleeve">
+        <p class="s-top">FBRN-2705 · Long Play</p>
+        <p class="s-name">Yudhis<br>&amp; Kirana</p>
+      </div>
+      <div class="rpm-stamp">33&#8531;<br>RPM</div>
+    </div>
+
+    <p class="hero-hint seq" style="--i:4"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i>Geser untuk membaca tracklist</p>
+  </section>
+
+  <!-- ===== TRACKLIST INDEX ===== -->
+  <section id="tracklist" aria-label="Daftar isi undangan">
+    <div class="track-head reveal">
+      <p class="track-no">Tracklist</p>
+      <h2 class="track-title">Satu Album, Dua Sisi, Satu Cerita</h2>
+    </div>
+    <p class="tl-side reveal">Side A</p>
+    <a class="tl-row reveal" href="#quote"><span class="tl-num">00</span><span class="tl-name">Intro — Ar-Rum 21</span><span class="tl-lead" aria-hidden="true"></span><span class="tl-dur">1:21</span></a>
+    <a class="tl-row reveal" href="#mempelai"><span class="tl-num">01</span><span class="tl-name">Kedua Mempelai</span><span class="tl-lead" aria-hidden="true"></span><span class="tl-dur">3:45</span></a>
+    <a class="tl-row reveal" href="#hitung"><span class="tl-num">02</span><span class="tl-name">Hitung Mundur</span><span class="tl-lead" aria-hidden="true"></span><span class="tl-dur">2:07</span></a>
+    <a class="tl-row reveal" href="#acara"><span class="tl-num">03</span><span class="tl-name">Akad &amp; Resepsi</span><span class="tl-lead" aria-hidden="true"></span><span class="tl-dur">4:19</span></a>
+    <p class="tl-side reveal">Side B</p>
+    <a class="tl-row reveal" href="#galeri"><span class="tl-num">04</span><span class="tl-name">Galeri</span><span class="tl-lead" aria-hidden="true"></span><span class="tl-dur">3:12</span></a>
+    <a class="tl-row reveal" href="#kado"><span class="tl-num">05</span><span class="tl-name">Amplop Digital</span><span class="tl-lead" aria-hidden="true"></span><span class="tl-dur">2:30</span></a>
+    <a class="tl-row reveal" href="#rsvp"><span class="tl-num">06</span><span class="tl-name">RSVP &amp; Ucapan</span><span class="tl-lead" aria-hidden="true"></span><span class="tl-dur">5:55</span></a>
+  </section>
+
+  <!-- ===== TRACK 00 : QUOTE ===== -->
+  <section id="quote" aria-label="Kutipan ayat">
+    <div class="track-head reveal">
+      <p class="track-no">Track 00 · Intro</p>
+      <h2 class="track-title">Sebelum Lagu Dimulai</h2>
+      <p class="track-rule"><span>1:21</span></p>
+    </div>
+    <div class="liner-quote reveal d1">
+      <blockquote>
+        &ldquo;Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan
+        untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya,
+        dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu
+        benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.&rdquo;
+        <cite>QS. Ar-Rum : 21</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ===== TRACK 01 : COUPLE ===== -->
+  <section id="mempelai" aria-label="Profil mempelai">
+    <div class="track-head reveal">
+      <p class="track-no">Track 01 · Side A</p>
+      <h2 class="track-title">Kedua Mempelai</h2>
+      <p class="track-rule"><span>3:45</span></p>
+    </div>
+
+    <article class="artist-card reveal">
+      <div class="artist-photo">
+        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=70&auto=format&fit=crop" alt="Foto Yudhistira" loading="lazy">
+        <span class="side-tag">Side A</span>
+      </div>
+      <div class="artist-body">
+        <h3 class="artist-name">Yudhistira Mahesa Putra</h3>
+        <p class="artist-role">Mempelai Pria · Vokal Utama</p>
+        <p class="artist-parents">Putra pertama dari Bapak Bambang Hariyanto &amp; Ibu Sri Wahyuni</p>
+        <a class="btn-ig" href="https://instagram.com/yudhis.mahesa" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i> @yudhis.mahesa
+        </a>
+      </div>
+    </article>
+
+    <p class="artist-x reveal" aria-hidden="true">feat.</p>
+
+    <article class="artist-card reveal">
+      <div class="artist-photo">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=700&q=70&auto=format&fit=crop" alt="Foto Kirana" loading="lazy">
+        <span class="side-tag">Side B</span>
+      </div>
+      <div class="artist-body">
+        <h3 class="artist-name">Kirana Ayu Lestari</h3>
+        <p class="artist-role">Mempelai Wanita · Harmoni</p>
+        <p class="artist-parents">Putri kedua dari Bapak Agus Prasetyo &amp; Ibu Dewi Anggraini</p>
+        <a class="btn-ig" href="https://instagram.com/kirana.ayl" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i> @kirana.ayl
+        </a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===== TRACK 02 : COUNTDOWN ===== -->
+  <section id="hitung" aria-label="Hitung mundur">
+    <div class="track-head reveal">
+      <p class="track-no" style="color:var(--mustard)">Track 02 · Side A</p>
+      <h2 class="track-title">Hitung Mundur</h2>
+      <p class="track-rule"><span>2:07</span></p>
+    </div>
+    <div class="deck reveal d1">
+      <p class="deck-label"><i class="fa-solid fa-compact-disc" aria-hidden="true"></i>&nbsp; Sisa durasi menuju hari-H</p>
+      <div class="count-grid" role="timer" aria-live="off">
+        <div><div class="count-num" id="cdDays">000</div><div class="count-label">Hari</div></div>
+        <div><div class="count-num" id="cdHours">00</div><div class="count-label">Jam</div></div>
+        <div><div class="count-num" id="cdMins">00</div><div class="count-label">Menit</div></div>
+        <div><div class="count-num" id="cdSecs">00</div><div class="count-label">Detik</div></div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-meta"><span>Lamaran</span><span id="progressPct">0%</span><span>Hari-H</span></div>
+      </div>
+    </div>
+    <p class="count-note reveal d2">Jarum sudah di atas piringan. Sampai jumpa Sabtu, 19 Juni 2027 — jangan sampai ketinggalan lagu pertama kami.</p>
+  </section>
+
+  <!-- ===== TRACK 03 : EVENTS ===== -->
+  <section id="acara" aria-label="Rangkaian acara">
+    <div class="track-head reveal">
+      <p class="track-no">Track 03 · Side A</p>
+      <h2 class="track-title">Akad &amp; Resepsi</h2>
+      <p class="track-rule"><span>4:19</span></p>
+    </div>
+
+    <article class="gig-card reveal">
+      <div class="gig-head">
+        <h3 class="gig-name">Akad Nikah</h3>
+        <span class="gig-side">Set 1</span>
+      </div>
+      <div class="gig-meta">
+        <div class="meta-row"><i class="fa-regular fa-calendar" aria-hidden="true"></i><div><strong>Sabtu, 19 Juni 2027</strong></div></div>
+        <div class="meta-row"><i class="fa-regular fa-clock" aria-hidden="true"></i><div>Pukul 08.00 – 10.00 WIB</div></div>
+        <div class="meta-row"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><div><strong>Masjid Al-Falah</strong><br>Jl. Raya Darmo No. 137A, Wonokromo, Surabaya</div></div>
+      </div>
+      <div class="gig-map">
+        <iframe title="Peta lokasi Akad Nikah" src="https://www.google.com/maps?q=-7.2930,112.7380&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="gig-actions">
+        <a class="btn-map" href="https://www.google.com/maps?q=-7.2930,112.7380" target="_blank" rel="noopener">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Lihat Lokasi
+        </a>
+      </div>
+    </article>
+
+    <article class="gig-card reveal">
+      <div class="gig-head">
+        <h3 class="gig-name">Resepsi</h3>
+        <span class="gig-side">Set 2</span>
+      </div>
+      <div class="gig-meta">
+        <div class="meta-row"><i class="fa-regular fa-calendar" aria-hidden="true"></i><div><strong>Sabtu, 19 Juni 2027</strong></div></div>
+        <div class="meta-row"><i class="fa-regular fa-clock" aria-hidden="true"></i><div>Pukul 18.30 – 21.00 WIB</div></div>
+        <div class="meta-row"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><div><strong>Grand City Ballroom</strong><br>Jl. Walikota Mustajab No. 1, Ketabang, Surabaya</div></div>
+      </div>
+      <div class="gig-map">
+        <iframe title="Peta lokasi Resepsi" src="https://www.google.com/maps?q=-7.2622,112.7500&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="gig-actions">
+        <a class="btn-map" href="https://www.google.com/maps?q=-7.2622,112.7500" target="_blank" rel="noopener">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Lihat Lokasi
+        </a>
+      </div>
+    </article>
+  </section>
+
+  <!-- ===== TRACK 04 : GALLERY ===== -->
+  <section id="galeri" aria-label="Galeri foto">
+    <div class="track-head reveal">
+      <p class="track-no">Track 04 · Side B</p>
+      <h2 class="track-title">Galeri</h2>
+      <p class="track-rule"><span>3:12</span></p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="wide reveal">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=70&auto=format&fit=crop" alt="Pasangan berjalan bergandengan tangan" loading="lazy">
+        <figcaption>rekaman sesi 01</figcaption>
+      </figure>
+      <figure class="reveal">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=500&q=70&auto=format&fit=crop" alt="Momen pemberkatan pernikahan" loading="lazy">
+        <figcaption>sesi 02</figcaption>
+      </figure>
+      <figure class="reveal d1">
+        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=500&q=70&auto=format&fit=crop" alt="Pasangan di bawah cahaya senja" loading="lazy">
+        <figcaption>sesi 03</figcaption>
+      </figure>
+      <figure class="reveal">
+        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=500&q=70&auto=format&fit=crop" alt="Detail busana pengantin" loading="lazy">
+        <figcaption>sesi 04</figcaption>
+      </figure>
+      <figure class="reveal d1">
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=500&q=70&auto=format&fit=crop" alt="Buket bunga pengantin" loading="lazy">
+        <figcaption>sesi 05</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== TRACK 05 : GIFT ===== -->
+  <section id="kado" aria-label="Amplop digital">
+    <div class="track-head reveal">
+      <p class="track-no">Track 05 · Side B</p>
+      <h2 class="track-title">Amplop Digital</h2>
+      <p class="track-rule"><span>2:30</span></p>
+    </div>
+    <p class="gift-intro reveal d1">
+      Kehadiran dan doa Bapak/Ibu/Saudara/i sudah menjadi hadiah terbaik bagi kami.
+      Namun bila ingin berbagi tanda kasih, kami sediakan dua jalur berikut.
+    </p>
+
+    <div class="bank-card reveal">
+      <p class="bank-name">BCA</p>
+      <p class="bank-number">7405218893</p>
+      <p class="bank-holder">a.n. Yudhistira Mahesa Putra</p>
+      <button class="btn-copy" type="button" data-copy="7405218893">
+        <i class="fa-regular fa-copy" aria-hidden="true"></i><span>Salin Nomor</span>
+      </button>
+    </div>
+
+    <div class="bank-card reveal d1">
+      <p class="bank-name">Bank Mandiri</p>
+      <p class="bank-number">1420019876543</p>
+      <p class="bank-holder">a.n. Kirana Ayu Lestari</p>
+      <button class="btn-copy" type="button" data-copy="1420019876543">
+        <i class="fa-regular fa-copy" aria-hidden="true"></i><span>Salin Nomor</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== TRACK 06 : RSVP ===== -->
+  <section id="rsvp" aria-label="RSVP dan ucapan">
+    <div class="track-head reveal">
+      <p class="track-no">Track 06 · Side B</p>
+      <h2 class="track-title">RSVP &amp; Liner Notes</h2>
+      <p class="track-rule"><span>5:55</span></p>
+    </div>
+
+    <form class="rsvp-form reveal d1" id="rsvpForm">
+      <label for="fNama">Nama</label>
+      <input type="text" id="fNama" name="nama" placeholder="Nama Anda" required maxlength="60">
+      <label for="fHadir">Konfirmasi Kehadiran</label>
+      <select id="fHadir" name="hadir" required>
+        <option value="Hadir">Insya Allah hadir</option>
+        <option value="Ragu">Masih ragu</option>
+        <option value="Tidak Hadir">Berhalangan hadir</option>
+      </select>
+      <label for="fPesan">Ucapan &amp; Doa</label>
+      <textarea id="fPesan" name="pesan" placeholder="Tulis catatan Anda di sampul album kami…" required maxlength="400"></textarea>
+      <button class="btn-send" type="submit">
+        <i class="fa-solid fa-pen-nib" aria-hidden="true"></i> Kirim Ucapan
+      </button>
+    </form>
+
+    <div class="wish-list" id="wishList" aria-live="polite"></div>
+  </section>
+
+  <!-- ===== CLOSING ===== -->
+  <section id="closing" aria-label="Penutup">
+    <p class="end-label reveal">— End of Side B —</p>
+    <p class="closing-text reveal d1">
+      Album ini belum lengkap tanpa Anda di barisan pendengarnya.
+      Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir
+      dan memberikan doa restu.
+    </p>
+    <p class="closing-names reveal d2">Yudhis &amp; Kirana</p>
+  </section>
+
+  <footer>
+    Made with <i class="fa-solid fa-heart" aria-hidden="true"></i> by <a href="#" rel="noopener">febrandev</a>
+  </footer>
+</main>
+</div>
+
+<!-- ===== BOTTOM NAV ===== -->
+<nav class="bottom-nav" id="bottomNav" aria-label="Navigasi undangan">
+  <a href="#hero"><i class="fa-solid fa-record-vinyl" aria-hidden="true"></i>Album</a>
+  <a href="#mempelai"><i class="fa-solid fa-user-group" aria-hidden="true"></i>Mempelai</a>
+  <a href="#acara"><i class="fa-regular fa-calendar" aria-hidden="true"></i>Acara</a>
+  <a href="#galeri"><i class="fa-regular fa-images" aria-hidden="true"></i>Galeri</a>
+  <a href="#rsvp"><i class="fa-regular fa-envelope" aria-hidden="true"></i>RSVP</a>
+</nav>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- guest name from ?to= ---- */
+  var params = new URLSearchParams(window.location.search);
+  var guest = (params.get("to") || "").trim();
+  if (guest) document.getElementById("guestName").textContent = guest;
+
+  /* ---- open album ---- */
+  var cover = document.getElementById("cover");
+  var music = document.getElementById("bgMusic");
+  var musicBtn = document.getElementById("musicToggle");
+  var vinyl = document.getElementById("vinyl");
+  var nav = document.getElementById("bottomNav");
+
+  function setMusicUI(playing){
+    musicBtn.classList.toggle("playing", playing);
+    musicBtn.setAttribute("aria-pressed", playing ? "true" : "false");
+    if (!reduceMotion) vinyl.classList.toggle("spinning", playing);
+    musicBtn.querySelector("i").className = playing
+      ? "fa-solid fa-record-vinyl"
+      : "fa-solid fa-play";
+  }
+
+  document.getElementById("btnOpen").addEventListener("click", function(){
+    cover.classList.add("opened");
+    document.body.classList.remove("locked");
+    document.body.classList.add("opened");
+    musicBtn.classList.add("show");
+    nav.classList.add("show");
+    music.play().then(function(){ setMusicUI(true); }).catch(function(){ setMusicUI(false); });
+  });
+
+  musicBtn.addEventListener("click", function(){
+    if (music.paused){
+      music.play().then(function(){ setMusicUI(true); }).catch(function(){ setMusicUI(false); });
+    } else {
+      music.pause();
+      setMusicUI(false);
+    }
+  });
+
+  /* ---- reveal on scroll ---- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          e.target.classList.add("visible");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: .12, rootMargin: "0px 0px -40px 0px" });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("visible"); });
+  }
+
+  /* ---- countdown + album progress ---- */
+  var target = new Date("2027-06-19T08:00:00+07:00").getTime();
+  var start = new Date("2026-06-19T08:00:00+07:00").getTime(); /* momen lamaran */
+  var elD = document.getElementById("cdDays"),
+      elH = document.getElementById("cdHours"),
+      elM = document.getElementById("cdMins"),
+      elS = document.getElementById("cdSecs"),
+      fill = document.getElementById("progressFill"),
+      pct = document.getElementById("progressPct");
+  function pad(n, len){ return String(n).padStart(len, "0"); }
+  function tick(){
+    var now = Date.now();
+    var diff = Math.max(0, target - now);
+    elD.textContent = pad(Math.floor(diff / 86400000), 3);
+    elH.textContent = pad(Math.floor(diff / 3600000) % 24, 2);
+    elM.textContent = pad(Math.floor(diff / 60000) % 60, 2);
+    elS.textContent = pad(Math.floor(diff / 1000) % 60, 2);
+    var p = Math.min(100, Math.max(0, (now - start) / (target - start) * 100));
+    fill.style.width = p.toFixed(2) + "%";
+    pct.textContent = Math.round(p) + "%";
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* ---- copy account number ---- */
+  document.querySelectorAll(".btn-copy").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var text = btn.getAttribute("data-copy");
+      navigator.clipboard.writeText(text).then(function(){
+        var label = btn.querySelector("span");
+        var old = label.textContent;
+        btn.classList.add("copied");
+        label.textContent = "Tersalin!";
+        setTimeout(function(){
+          btn.classList.remove("copied");
+          label.textContent = old;
+        }, 2000);
+      });
+    });
+  });
+
+  /* ---- RSVP + wishes (localStorage) ---- */
+  var STORE_KEY = "vinyl_yudhis_kirana_wishes_v1";
+  var seed = [
+    { nama:"Rania Safitri", hadir:"Hadir", pesan:"Undangannya keren banget, serasa beli piringan hitam edisi terbatas! Selamat ya Yudhis & Kirana, semoga sakinah mawaddah warahmah. Sampai jumpa di Surabaya!", waktu:"2 hari lalu" },
+    { nama:"Bagus Wicaksono", hadir:"Hadir", pesan:"Akhirnya rilis juga album kalian, bro! Ditunggu set kedua di Grand City. Semoga lancar sampai hari H dan langgeng selamanya.", waktu:"5 hari lalu" },
+    { nama:"Intan Permatasari", hadir:"Ragu", pesan:"Kirana sayang, selamat yaa. Doa terbaik dari kami sekeluarga, semoga pernikahannya penuh berkah walau kami belum pasti bisa hadir.", waktu:"1 minggu lalu" }
+  ];
+
+  function loadWishes(){
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch(e){}
+    return seed.slice();
+  }
+  function saveWishes(list){
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(list)); } catch(e){}
+  }
+  function badgeText(hadir){
+    if (hadir === "Hadir") return "Hadir";
+    if (hadir === "Ragu") return "Masih Ragu";
+    return "Berhalangan";
+  }
+  var wishList = document.getElementById("wishList");
+  function renderWishes(list){
+    wishList.innerHTML = "";
+    list.forEach(function(w){
+      var item = document.createElement("article");
+      item.className = "wish-item";
+      var head = document.createElement("div");
+      head.className = "wish-head";
+      var name = document.createElement("span");
+      name.className = "wish-name";
+      name.textContent = w.nama;
+      var badge = document.createElement("span");
+      badge.className = "wish-badge";
+      badge.textContent = badgeText(w.hadir);
+      head.appendChild(name); head.appendChild(badge);
+      var text = document.createElement("p");
+      text.className = "wish-text";
+      text.textContent = w.pesan;
+      var time = document.createElement("p");
+      time.className = "wish-time";
+      time.textContent = w.waktu;
+      item.appendChild(head); item.appendChild(text); item.appendChild(time);
+      wishList.appendChild(item);
+    });
+  }
+  var wishes = loadWishes();
+  renderWishes(wishes);
+
+  document.getElementById("rsvpForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var nama = document.getElementById("fNama").value.trim();
+    var hadir = document.getElementById("fHadir").value;
+    var pesan = document.getElementById("fPesan").value.trim();
+    if (!nama || !pesan) return;
+    wishes.unshift({ nama:nama, hadir:hadir, pesan:pesan, waktu:"Baru saja" });
+    saveWishes(wishes);
+    renderWishes(wishes);
+    ev.target.reset();
+    wishList.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block:"start" });
+  });
+
+  /* ---- active nav highlight ---- */
+  var navLinks = nav.querySelectorAll("a");
+  var sections = ["hero","mempelai","acara","galeri","rsvp"].map(function(id){
+    return document.getElementById(id);
+  });
+  if ("IntersectionObserver" in window){
+    var navIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          navLinks.forEach(function(a){
+            a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id);
+          });
+        }
+      });
+    }, { threshold: .3 });
+    sections.forEach(function(s){ if (s) navIo.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
