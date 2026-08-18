@@ -447,6 +447,35 @@ nav.bottom a:hover,nav.bottom a:focus-visible{background:rgba(246,239,221,.14);c
   #cover.tearing .pass-main,#cover.tearing .pass-stub{transition:none;transform:none;opacity:1}
   *{animation:none !important;transition-duration:.01ms !important}
 }
+/* ===== tiket masuk QR ===== */
+.gatepass{
+  max-width:320px;margin:26px auto 0;background:var(--card);
+  border:2px solid var(--navy);border-radius:16px;overflow:hidden;
+  text-align:center;box-shadow:var(--shadow);
+}
+.gatepass-head{
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--navy);color:var(--paper);
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.2em;
+  text-transform:uppercase;padding:9px 14px;
+}
+.gatepass-head i{color:var(--stamp)}
+.gatepass-body{padding:20px 18px 22px}
+.gatepass .qr-box{
+  background:#fff;border-radius:12px;padding:10px;display:inline-block;
+  border:1px solid var(--line);
+}
+.gatepass .qr-box img{width:170px;height:170px;display:block}
+.gatepass .g-name{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--navy-deep);margin-top:14px}
+.gatepass .g-code{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.26em;color:var(--stamp);font-weight:600;margin-top:4px;text-transform:uppercase}
+.gatepass .g-note{font-size:.78rem;color:var(--navy-soft);line-height:1.75;margin-top:12px}
+.gatepass-perfo{border-top:2px dashed var(--line);position:relative;height:0}
+.gatepass-perfo::before,.gatepass-perfo::after{
+  content:"";position:absolute;top:-9px;width:18px;height:18px;border-radius:50%;
+  background:var(--paper);border:1px solid var(--line);
+}
+.gatepass-perfo::before{left:-10px}
+.gatepass-perfo::after{right:-10px}
 </style>
 </head>
 <body class="locked">
@@ -744,6 +773,31 @@ nav.bottom a:hover,nav.bottom a:focus-visible{background:rgba(246,239,221,.14);c
     </div>
   </section>
 
+  <!-- ================= TIKET MASUK (QR) ================= -->
+  <section id="tiket" class="center">
+    <p class="tag reveal">Gate Pass</p>
+    <h2 class="serif h-big reveal">Tiket Masuk</h2>
+    <p class="reveal d1" style="font-size:.9rem;margin-top:12px">
+      Tiket ini berlaku untuk satu undangan. Tunjukkan kepada penerima tamu
+      saat tiba di lokasi acara.
+    </p>
+    <div class="gatepass reveal">
+      <div class="gatepass-head">
+        <span><i class="fa-solid fa-plane" aria-hidden="true"></i> YN Airways</span>
+        <span>Gate Bahagia</span>
+      </div>
+      <div class="gatepass-body">
+        <div class="qr-box"><img id="qrImg" alt="QR tiket masuk" width="170" height="170"></div>
+        <p class="g-name" id="qrName">Tamu Undangan</p>
+        <p class="g-code" id="qrCode"></p>
+      </div>
+      <div class="gatepass-perfo"></div>
+      <div class="gatepass-body" style="padding-top:14px">
+        <p class="g-note">Kehadiran Anda dicatat setelah kode dipindai<br>oleh penerima tamu.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= CHECK-IN / RSVP ================= -->
   <section id="rsvp" class="center">
     <p class="tag reveal">Konfirmasi Kehadiran</p>
@@ -795,6 +849,7 @@ nav.bottom a:hover,nav.bottom a:focus-visible{background:rgba(246,239,221,.14);c
   <a href="#mempelai"><i class="fa-solid fa-id-card" aria-hidden="true"></i><span>Kami</span></a>
   <a href="#acara"><i class="fa-solid fa-ticket" aria-hidden="true"></i><span>Acara</span></a>
   <a href="#galeri"><i class="fa-regular fa-images" aria-hidden="true"></i><span>Galeri</span></a>
+  <a href="#tiket"><i class="fa-solid fa-qrcode" aria-hidden="true"></i><span>Tiket</span></a>
   <a href="#rsvp"><i class="fa-solid fa-plane-circle-check" aria-hidden="true"></i><span>Checkin</span></a>
 </nav>
 
@@ -806,6 +861,18 @@ nav.bottom a:hover,nav.bottom a:focus-visible{background:rgba(246,239,221,.14);c
   var params = new URLSearchParams(window.location.search);
   var guest = (params.get("to") || "").trim();
   if (guest) document.getElementById("guestName").textContent = guest;
+
+  /* ---------- tiket masuk QR (kode unik per tamu) ---------- */
+  var gName = guest || "Tamu Undangan";
+  var h = 0, gU = gName.toUpperCase();
+  for (var gi = 0; gi < gU.length; gi++) h = (h * 31 + gU.charCodeAt(gi)) % 1679616;
+  var gCode = "YN-" + h.toString(36).toUpperCase();
+  while (gCode.length < 7) gCode = gCode.replace("YN-", "YN-0");
+  document.getElementById("qrName").textContent = gName;
+  document.getElementById("qrCode").textContent = "Kode: " + gCode;
+  var qrData = "UNDANGAN YUSUF & NAURA\nTamu: " + gName + "\nKode: " + gCode;
+  document.getElementById("qrImg").src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=340x340&margin=1&data=" + encodeURIComponent(qrData);
 
   /* ---------- buka undangan : sobek boarding pass ---------- */
   var cover = document.getElementById("cover");
