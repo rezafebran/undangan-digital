@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wedding of Raka &amp; Nadia — Video</title>
+<meta name="description" content="Undangan video pernikahan Raka & Nadia — Sabtu, 12 Desember 2026">
+
+<!-- Icons: Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<!-- Fonts: Google Fonts API -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Charm:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --emerald:#17352a;
+  --emerald-2:#1f4536;
+  --gold:#c5a05e;
+  --gold-soft:#d9be8c;
+  --ivory:#faf7f0;
+  --script:'Charm',cursive;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--sans);font-weight:300;
+  background:#0b1712;color:var(--ivory);
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.stage{
+  position:relative;
+  width:min(480px,100vw);height:min(920px,100dvh);
+  background:var(--emerald);
+  overflow:hidden;
+  box-shadow:0 0 90px rgba(0,0,0,.55);
+}
+@media(max-width:500px){.stage{width:100vw;height:100dvh}}
+
+/* ---------- PROGRESS ---------- */
+.progress{
+  position:absolute;top:0;left:0;right:0;z-index:40;
+  display:flex;gap:4px;padding:12px 14px;
+}
+.progress span{
+  flex:1;height:3px;border-radius:3px;
+  background:rgba(250,247,240,.25);overflow:hidden;position:relative;
+}
+.progress span i{
+  position:absolute;inset:0;background:var(--gold-soft);
+  transform:scaleX(0);transform-origin:left;border-radius:3px;
+}
+.progress span.done i{transform:scaleX(1)}
+.progress span.on i{transition:transform linear;transform:scaleX(1)}
+
+/* ---------- TOP BAR ---------- */
+.topbar{
+  position:absolute;top:24px;left:0;right:0;z-index:40;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 18px;
+}
+.tb-names{font-family:var(--serif);font-size:13px;letter-spacing:.26em;color:var(--gold-soft)}
+.btn-round{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(11,23,18,.5);border:1px solid rgba(197,160,94,.45);
+  color:var(--gold-soft);font-size:12px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.btn-round.playing i.fa-music{animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- SCENES ---------- */
+.scene{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:70px 34px;
+  opacity:0;visibility:hidden;
+  transition:opacity 1s var(--ease),visibility 1s;
+}
+.scene.on{opacity:1;visibility:visible}
+.scene .bg{
+  position:absolute;inset:0;z-index:0;
+  background-size:cover;background-position:center;
+}
+.scene.on .bg.kb{animation:kenburns 9s var(--ease) forwards}
+@keyframes kenburns{from{transform:scale(1.02)}to{transform:scale(1.16)}}
+.scene .shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(11,23,18,.55),rgba(11,23,18,.72))}
+.scene .fg{position:relative;z-index:2;width:100%}
+
+/* elemen masuk berurutan tiap scene aktif */
+.fx{opacity:0;transform:translateY(26px)}
+.scene.on .fx{opacity:1;transform:none;transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.scene.on .f1{transition-delay:.25s}
+.scene.on .f2{transition-delay:.65s}
+.scene.on .f3{transition-delay:1.05s}
+.scene.on .f4{transition-delay:1.45s}
+
+.eyebrow{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:14px}
+.names{font-family:var(--script);font-size:clamp(50px,13vw,68px);color:#fff;line-height:1.15}
+.big{font-family:var(--serif);font-size:clamp(28px,8vw,36px);font-weight:500;color:#fff;line-height:1.3;text-wrap:balance}
+.lead{font-family:var(--serif);font-size:18px;font-style:italic;line-height:1.9;color:rgba(250,247,240,.92);max-width:320px;margin:0 auto}
+.small{font-size:12.5px;line-height:1.9;color:rgba(250,247,240,.8)}
+.orn{display:flex;align-items:center;gap:12px;justify-content:center;color:var(--gold);margin:20px 0}
+.orn::before,.orn::after{content:'';width:50px;height:1px;background:rgba(197,160,94,.6)}
+.orn i{font-size:11px}
+
+/* cover */
+.btn-open{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--gold);color:#1c1a14;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:12px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
+  padding:15px 30px;border-radius:999px;margin-top:30px;
+  box-shadow:0 10px 30px rgba(197,160,94,.35);
+  transition:transform .35s var(--ease);
+}
+.btn-open:hover{transform:translateY(-3px)}
+.guest{font-size:12px;color:rgba(250,247,240,.75);margin-top:36px}
+.guest strong{display:block;font-family:var(--serif);font-size:21px;font-weight:500;color:#fff;margin-top:6px}
+
+/* mempelai */
+.photo-oval{
+  width:180px;height:226px;margin:0 auto 22px;
+  border-radius:110px 110px 14px 14px;overflow:hidden;
+  border:1px solid var(--gold-soft);padding:7px;background:rgba(250,247,240,.06);
+}
+.photo-oval img{width:100%;height:100%;object-fit:cover;border-radius:100px 100px 9px 9px}
+.p-name{font-family:var(--serif);font-size:27px;font-weight:600;color:#fff}
+.p-role{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-soft);margin:6px 0 10px}
+
+/* countdown */
+.cd{display:flex;gap:12px;justify-content:center;margin-top:26px}
+.cd div{
+  width:70px;padding:14px 0 11px;border:1px solid rgba(197,160,94,.45);
+  border-radius:12px;background:rgba(250,247,240,.05);
+}
+.cd b{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--gold-soft);display:block;line-height:1}
+.cd small{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,247,240,.65);margin-top:7px;display:block}
+
+/* penutup */
+.end-btns{display:flex;flex-direction:column;gap:12px;margin-top:28px;width:100%;max-width:270px}
+.btn-line{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  border:1px solid rgba(197,160,94,.55);border-radius:999px;
+  color:var(--gold-soft);text-decoration:none;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  padding:13px 20px;transition:background .3s,color .3s;
+}
+.btn-line:hover{background:var(--gold);color:#1c1a14}
+.btn-line.solid{background:var(--gold);color:#1c1a14;font-weight:600}
+.btn-line.solid:hover{background:var(--gold-soft)}
+
+/* hint */
+.hint{
+  position:absolute;bottom:16px;left:0;right:0;z-index:40;
+  text-align:center;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(250,247,240,.45);
+  opacity:0;transition:opacity .8s;
+}
+.hint.show{opacity:1}
+.paused-badge{
+  position:absolute;top:70px;left:50%;transform:translateX(-50%);z-index:40;
+  background:rgba(11,23,18,.7);border:1px solid rgba(197,160,94,.4);
+  color:var(--gold-soft);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  padding:7px 16px;border-radius:999px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.paused-badge.show{opacity:1}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <div class="progress" id="progress"></div>
+  <div class="topbar" style="opacity:0;transition:opacity .8s" id="topbar">
+    <span class="tb-names">RAKA &amp; NADIA</span>
+    <button class="btn-round" id="btnMusic" aria-label="Musik"><i class="fa-solid fa-music"></i></button>
+  </div>
+  <div class="paused-badge" id="pausedBadge"><i class="fa-solid fa-pause"></i>&nbsp; Dijeda</div>
+
+  <!-- SCENE 0 : COVER (tidak auto-lanjut, nunggu tombol) -->
+  <div class="scene on" data-dur="0">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80')"></div>
+    <div class="shade"></div>
+    <div class="fg">
+      <p class="eyebrow fx f1">Undangan Video</p>
+      <h1 class="names fx f2">Raka &amp; Nadia</h1>
+      <p class="eyebrow fx f3" style="margin-top:16px">12 . 12 . 2026</p>
+      <div class="guest fx f3">Kepada Yth. Bapak/Ibu/Saudara/i<strong id="guestName">Tamu Undangan</strong></div>
+      <button class="btn-open fx f4" id="btnOpen"><i class="fa-solid fa-play"></i> Putar Undangan</button>
+    </div>
+  </div>
+
+  <!-- SCENE 1 : BISMILLAH -->
+  <div class="scene" data-dur="6500">
+    <div class="fg">
+      <div class="orn fx f1"><i class="fa-solid fa-leaf"></i></div>
+      <p class="eyebrow fx f1">Bismillahirrahmanirrahim</p>
+      <p class="lead fx f2">Dengan memohon rahmat dan ridha Allah SWT, kami mengundang Bapak/Ibu/Saudara/i pada pernikahan kami.</p>
+    </div>
+  </div>
+
+  <!-- SCENE 2 : QUOTE -->
+  <div class="scene" data-dur="9000">
+    <div class="fg">
+      <p class="lead fx f1">&ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu merasa tenteram di sampingnya.&rdquo;</p>
+      <p class="eyebrow fx f2" style="margin-top:22px">QS. Ar-Rum : 21</p>
+    </div>
+  </div>
+
+  <!-- SCENE 3 : MEMPELAI PRIA -->
+  <div class="scene" data-dur="6500">
+    <div class="fg">
+      <div class="photo-oval fx f1"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80" alt="Mempelai pria"></div>
+      <p class="p-name fx f2">Raka Aditya Pratama, S.T.</p>
+      <p class="p-role fx f2">Mempelai Pria</p>
+      <p class="small fx f3">Putra pertama dari<br>Bapak H. Bambang Pratama &amp; Ibu Hj. Sri Rahayu</p>
+    </div>
+  </div>
+
+  <!-- SCENE 4 : MEMPELAI WANITA -->
+  <div class="scene" data-dur="6500">
+    <div class="fg">
+      <div class="photo-oval fx f1"><img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=80" alt="Mempelai wanita"></div>
+      <p class="p-name fx f2">Nadia Putri Maharani, S.Psi.</p>
+      <p class="p-role fx f2">Mempelai Wanita</p>
+      <p class="small fx f3">Putri kedua dari<br>Bapak Ir. Ahmad Maulana &amp; Ibu Dewi Kartika</p>
+    </div>
+  </div>
+
+  <!-- SCENE 5 : SAVE THE DATE -->
+  <div class="scene" data-dur="7500">
+    <div class="fg">
+      <p class="eyebrow fx f1">Save the Date</p>
+      <p class="big fx f2">Sabtu,<br>12 Desember 2026</p>
+      <div class="cd fx f3">
+        <div><b id="cdD">0</b><small>Hari</small></div>
+        <div><b id="cdH">0</b><small>Jam</small></div>
+        <div><b id="cdM">0</b><small>Menit</small></div>
+        <div><b id="cdS">0</b><small>Detik</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 6 : AKAD -->
+  <div class="scene" data-dur="7000">
+    <div class="fg">
+      <p class="eyebrow fx f1"><i class="fa-solid fa-hands-praying"></i>&nbsp; Akad Nikah</p>
+      <p class="big fx f2">08.00 &ndash; 10.00 WIB</p>
+      <div class="orn fx f2"><i class="fa-solid fa-leaf"></i></div>
+      <p class="small fx f3">Masjid Al-Ikhlas<br>Jl. Melati Raya No. 12, Jakarta Selatan</p>
+    </div>
+  </div>
+
+  <!-- SCENE 7 : RESEPSI -->
+  <div class="scene" data-dur="7000">
+    <div class="fg">
+      <p class="eyebrow fx f1"><i class="fa-solid fa-champagne-glasses"></i>&nbsp; Resepsi</p>
+      <p class="big fx f2">11.00 &ndash; 14.00 WIB</p>
+      <div class="orn fx f2"><i class="fa-solid fa-leaf"></i></div>
+      <p class="small fx f3">Gedung Serbaguna Graha Melati<br>Jl. Kenanga No. 45, Jakarta Selatan</p>
+    </div>
+  </div>
+
+  <!-- SCENE 8-10 : GALERI -->
+  <div class="scene" data-dur="4500">
+    <div class="bg kb" style="background-image:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=80')"></div>
+    <div class="shade" style="background:linear-gradient(180deg,transparent 45%,rgba(11,23,18,.7))"></div>
+    <div class="fg" style="margin-top:auto"><p class="eyebrow fx f1">Momen Kami</p></div>
+  </div>
+  <div class="scene" data-dur="4500">
+    <div class="bg kb" style="background-image:url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200&q=80')"></div>
+    <div class="shade" style="background:linear-gradient(180deg,transparent 45%,rgba(11,23,18,.7))"></div>
+    <div class="fg" style="margin-top:auto"><p class="lead fx f1" style="font-size:16px">Dua hati, satu perjalanan.</p></div>
+  </div>
+  <div class="scene" data-dur="4500">
+    <div class="bg kb" style="background-image:url('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=1200&q=80')"></div>
+    <div class="shade" style="background:linear-gradient(180deg,transparent 45%,rgba(11,23,18,.7))"></div>
+    <div class="fg" style="margin-top:auto"><p class="lead fx f1" style="font-size:16px">Menuju selamanya.</p></div>
+  </div>
+
+  <!-- SCENE 11 : PENUTUP (berhenti di sini) -->
+  <div class="scene" data-dur="0">
+    <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=80')"></div>
+    <div class="shade"></div>
+    <div class="fg">
+      <p class="eyebrow fx f1">Terima Kasih</p>
+      <h2 class="names fx f2" style="font-size:clamp(40px,11vw,54px)">Raka &amp; Nadia</h2>
+      <p class="small fx f3" style="max-width:300px;margin:10px auto 0">Merupakan kehormatan bagi kami apabila Anda berkenan hadir dan memberikan doa restu.</p>
+      <div class="end-btns fx f4">
+        <a class="btn-line solid" id="linkFull" href="febran1.html"><i class="fa-regular fa-envelope-open"></i> Buka Undangan Lengkap</a>
+        <a class="btn-line" href="https://maps.google.com/?q=-6.2350,106.8106" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Lihat Lokasi</a>
+        <button class="btn-line" id="btnReplay" style="background:none;cursor:pointer;font-family:var(--sans)"><i class="fa-solid fa-rotate-left"></i> Putar Ulang</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="hint" id="hint">Tap kanan lanjut &middot; kiri mundur &middot; tahan untuk jeda</p>
+</div>
+
+<audio id="audio" loop preload="auto" src="assets/music.mp3"></audio>
+
+<script>
+// ----- Nama tamu: vidio.html?to=Budi -----
+const guest = new URLSearchParams(location.search).get('to');
+if (guest) {
+  document.getElementById('guestName').textContent = guest;
+  document.getElementById('linkFull').href = 'febran1.html?to=' + encodeURIComponent(guest);
+}
+
+// ----- Player -----
+const scenes = [...document.querySelectorAll('.scene')];
+const progress = document.getElementById('progress');
+scenes.forEach(() => {
+  const seg = document.createElement('span');
+  seg.appendChild(document.createElement('i'));
+  progress.appendChild(seg);
+});
+const segs = [...progress.children];
+
+let cur = 0, timer = null, started = false, paused = false;
+let segStart = 0, segRemain = 0;
+
+function show(i) {
+  clearTimeout(timer);
+  i = Math.max(0, Math.min(scenes.length - 1, i));
+  scenes.forEach((s, k) => s.classList.toggle('on', k === i));
+  segs.forEach((b, k) => {
+    b.classList.toggle('done', k < i);
+    b.classList.remove('on');
+    b.firstChild.style.transitionDuration = '0s';
+    if (k >= i) b.firstChild.style.transform = 'scaleX(0)';
+  });
+  cur = i;
+  const dur = +scenes[i].dataset.dur;
+  if (dur > 0 && started) {
+    const bar = segs[i].firstChild;
+    requestAnimationFrame(() => {
+      bar.style.transitionDuration = dur + 'ms';
+      segs[i].classList.add('on');
+    });
+    segStart = Date.now(); segRemain = dur;
+    timer = setTimeout(() => show(cur + 1), dur);
+  }
+}
+
+// ----- Mulai -----
+const audio = document.getElementById('audio');
+const btnMusic = document.getElementById('btnMusic');
+document.getElementById('btnOpen').addEventListener('click', e => {
+  e.stopPropagation();
+  started = true;
+  document.getElementById('topbar').style.opacity = 1;
+  document.getElementById('hint').classList.add('show');
+  setTimeout(() => document.getElementById('hint').classList.remove('show'), 5000);
+  audio.play().then(() => btnMusic.classList.add('playing')).catch(() => {});
+  show(1);
+});
+document.getElementById('btnReplay').addEventListener('click', e => { e.stopPropagation(); show(1); });
+
+btnMusic.addEventListener('click', e => {
+  e.stopPropagation();
+  if (audio.paused) { audio.play(); btnMusic.classList.add('playing'); }
+  else { audio.pause(); btnMusic.classList.remove('playing'); }
+});
+
+// ----- Tap kiri/kanan, tahan untuk jeda -----
+const stage = document.getElementById('stage');
+const badge = document.getElementById('pausedBadge');
+let holdTimer = null, wasHold = false;
+
+function pausePlay() {
+  if (!started || paused) return;
+  const dur = +scenes[cur].dataset.dur;
+  if (dur <= 0) return;
+  paused = true;
+  clearTimeout(timer);
+  segRemain -= (Date.now() - segStart);
+  const bar = segs[cur].firstChild;
+  const done = 1 - Math.max(0, segRemain) / dur;
+  bar.style.transitionDuration = '0s';
+  bar.style.transform = 'scaleX(' + done + ')';
+  badge.classList.add('show');
+}
+function resumePlay() {
+  if (!paused) return;
+  paused = false;
+  badge.classList.remove('show');
+  const bar = segs[cur].firstChild;
+  requestAnimationFrame(() => {
+    bar.style.transitionDuration = Math.max(0, segRemain) + 'ms';
+    bar.style.transform = 'scaleX(1)';
+  });
+  segStart = Date.now();
+  timer = setTimeout(() => show(cur + 1), Math.max(0, segRemain));
+}
+
+stage.addEventListener('pointerdown', () => {
+  if (!started) return;
+  wasHold = false;
+  holdTimer = setTimeout(() => { wasHold = true; pausePlay(); }, 350);
+});
+stage.addEventListener('pointerup', e => {
+  if (!started) return;
+  clearTimeout(holdTimer);
+  if (wasHold) { resumePlay(); return; }
+  if (e.target.closest('a,button')) return;
+  const x = e.clientX - stage.getBoundingClientRect().left;
+  show(x < stage.offsetWidth / 3 ? cur - 1 : cur + 1);
+});
+document.addEventListener('keydown', e => {
+  if (!started) return;
+  if (e.key === 'ArrowRight') show(cur + 1);
+  if (e.key === 'ArrowLeft') show(cur - 1);
+  if (e.key === ' ') { e.preventDefault(); paused ? resumePlay() : pausePlay(); }
+});
+
+// ----- Countdown -----
+const target = new Date('2026-12-12T08:00:00+07:00').getTime();
+function tick() {
+  const diff = Math.max(0, target - Date.now());
+  cdD.textContent = Math.floor(diff / 864e5);
+  cdH.textContent = Math.floor(diff % 864e5 / 36e5);
+  cdM.textContent = Math.floor(diff % 36e5 / 6e4);
+  cdS.textContent = Math.floor(diff % 6e4 / 1e3);
+}
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>
