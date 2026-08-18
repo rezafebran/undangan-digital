@@ -382,6 +382,23 @@ section{padding:78px 30px}
 .wish-status{font-size:11px;color:var(--gold);letter-spacing:.06em}
 .wish p{font-size:13px;color:var(--muted)}
 
+/* ---------- VIDEO & LIVE ---------- */
+.video-wrap{
+  aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+  border:1px solid var(--gold-soft);background:#000;
+}
+.video-wrap iframe{width:100%;height:100%;border:0;display:block}
+.video-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+.live-card{
+  border:1px solid var(--gold-soft);border-radius:18px;
+  padding:34px 26px;text-align:center;background:#fff;
+  box-shadow:0 18px 40px rgba(23,53,42,.07);
+}
+.live-card i.lv-icon{font-size:26px;color:var(--gold);margin-bottom:14px}
+.live-note{font-size:13px;color:var(--muted);margin-top:6px}
+.live-btns{display:flex;justify-content:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+.kado-note{font-size:13px;color:var(--muted);margin:26px auto 14px;max-width:320px}
+
 /* ---------- FOOTER ---------- */
 .footer{
   background:var(--emerald);color:rgba(250,247,240,.7);
@@ -562,6 +579,25 @@ section{padding:78px 30px}
     </div>
   </section>
 
+  <!-- ============ LIVE STREAMING ============ -->
+  <section class="events" id="live">
+    <p class="eyebrow rv">Untuk yang Berhalangan Hadir</p>
+    <h2 class="title rv d1">Live Streaming</h2>
+    <div class="live-card rv">
+      <i class="fa-solid fa-tower-broadcast lv-icon"></i>
+      <p class="event-time"><strong>Sabtu, 12 Desember 2026</strong><br>Mulai 08.00 WIB</p>
+      <p class="live-note">Prosesi akad nikah kami disiarkan langsung.<br>Saksikan dari mana pun Anda berada.</p>
+      <div class="live-btns">
+        <a class="btn-ghost" href="https://youtube.com/@febrandev" target="_blank" rel="noopener">
+          <i class="fa-brands fa-youtube"></i> YouTube Live
+        </a>
+        <a class="btn-ghost" href="https://instagram.com" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram"></i> Instagram Live
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ STORY ============ -->
   <section class="story">
     <p class="eyebrow rv">Perjalanan Kami</p>
@@ -603,6 +639,18 @@ section{padding:78px 30px}
     </div>
   </section>
 
+  <!-- ============ VIDEO ============ -->
+  <section class="video" id="video">
+    <p class="eyebrow rv">Cinematic</p>
+    <h2 class="title rv d1">Video Prewedding</h2>
+    <div class="video-wrap rv d2">
+      <iframe src="https://www.youtube-nocookie.com/embed/NBsnDIsmsaQ" title="Video prewedding"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen loading="lazy"></iframe>
+    </div>
+    <p class="video-note rv d3"><i class="fa-solid fa-film"></i> Sebuah cuplikan perjalanan kami menuju hari bahagia.</p>
+  </section>
+
   <!-- ============ GIFT ============ -->
   <section class="gift" id="gift">
     <p class="eyebrow rv">Tanda Kasih</p>
@@ -621,6 +669,13 @@ section{padding:78px 30px}
       <p class="bank-no">1290 0087 6543</p>
       <p class="bank-holder">a.n. Nadia Putri Maharani</p>
       <button class="btn-copy" data-copy="129000876543"><i class="fa-regular fa-copy"></i> Salin Nomor</button>
+    </div>
+
+    <p class="kado-note rv"><i class="fa-solid fa-gift" style="color:var(--gold)"></i>&nbsp; Atau kirimkan kado fisik ke alamat kami:</p>
+    <div class="bank-card rv d1">
+      <p class="bank-name">Alamat Pengiriman Kado</p>
+      <p class="bank-holder" style="font-size:14px;line-height:1.8;margin-top:10px">Raka &amp; Nadia<br>Jl. Melati Raya No. 12, RT 04/RW 02,<br>Kebayoran Baru, Jakarta Selatan 12120</p>
+      <button class="btn-copy" data-copy="Raka & Nadia, Jl. Melati Raya No. 12, RT 04/RW 02, Kebayoran Baru, Jakarta Selatan 12120"><i class="fa-regular fa-copy"></i> Salin Alamat</button>
     </div>
   </section>
 
